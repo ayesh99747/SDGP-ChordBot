@@ -1,6 +1,7 @@
 .carousel-inner{
     position: relative;
     margin: auto;
+<<<<<<< HEAD
     height: 370px;
 }
 .links{
@@ -31,3 +32,15 @@ p{
 
 
 
+=======
+    height: 300px;
+}
+.links{
+    width:200px;
+    height:200px;
+    
+}
+.iconsLinks{
+    
+}
+>>>>>>> 59e12b118eada73dd05dd4de5d799aee01c7dd14

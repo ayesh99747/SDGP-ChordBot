@@ -1,4 +1,10 @@
 .contain{
+<<<<<<< HEAD
+    height: 60px;
+    padding-left: 0px;
+    background-color: #34495E  ;
+=======
     height: 50px;
     padding-left: 0px;
+>>>>>>> 59e12b118eada73dd05dd4de5d799aee01c7dd14
 }

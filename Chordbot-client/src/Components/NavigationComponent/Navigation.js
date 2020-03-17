@@ -5,8 +5,8 @@ import './Navigation.css';
 export class Navigation extends Component{
     render(){
         return( 
-        <Navbar bg="dark" variant="dark" className="contain">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar variant="dark" className="contain">
+            <Navbar.Brand > Chord-bot</Navbar.Brand>
             <Nav className="ml-auto ">
                 <Nav.Link className="text-white text-uppercase ml-4 " href="/">Home</Nav.Link>
                 <Nav.Link className="text-white text-uppercase ml-4" href="/ChordDisplay">View Chords</Nav.Link>

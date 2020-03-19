@@ -9,22 +9,22 @@ export class Home extends Component{ //here we try to create home component as a
                 <div id="background">
                     <div id="background-overlay">
                     <div className="iconsLinks">
-                    <a href="ChordDisplay.js">
+                    <a href="/SongLoadPage">
                     <img className="links" src="https://cdn1.iconfinder.com/data/icons/audio-2/512/musicfile-512.png" alt="chord display page" />
                     <p id="name"> View Chords</p>
                     </a>
 
-                    <a href="RecommendSongs.js">
+                    <a href="/RecommendSongs">
                     <img className="links" src="https://www.lakedistrictlodgeholidays.co.uk/wp-content/uploads/2020/01/icon-recommend.png" alt="Recommended song page" />
                     <p id="name">Recommended Songs</p>
                     </a>
 
-                    <a href="DemoSongs.js">
+                    <a href="/DemoSongs">
                     <img className="links" src="https://eversity.edu/sites/default/files/content/paragraphs/text-graphic/checklist.png" alt="Demo song page" />
                     <p id="name">Demo Songs</p>
                     </a>
 
-                    <a href="FavouritesSong.js">
+                    <a href="/FavouritesSong">
                     <img className="links" src="https://img.icons8.com/cotton/2x/like--v3.png" alt="Favourite page" />
                     <p id="name">View Favourites</p>
                     </a>
@@ -38,6 +38,6 @@ export class Home extends Component{ //here we try to create home component as a
             </div>
         </div>
             
-        )
+        );
     }
 }

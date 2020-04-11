@@ -31,7 +31,7 @@ public class CustomerLoginInfoApi {
     }
 
     //This url is used to check if a username is unique and returns a boolean accordingly
-    @RequestMapping(value = "isUsernamePresent", method = RequestMethod.GET)
+    @RequestMapping(value = "/isUsernamePresent", method = RequestMethod.GET)
     @ResponseBody
     public boolean isUsernamePresent(@RequestParam(value = "username", required = true) String username) {
         List<Customer> listOfCustomers = CustomerLoginInfoManager.getListOfCustomers();
@@ -44,7 +44,7 @@ public class CustomerLoginInfoApi {
     }
 
 
-    @RequestMapping(value = "validateLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/validateLogin", method = RequestMethod.POST)
     @ResponseBody
     public boolean validateLoginInfo(@RequestBody LoginInfo loginInfo) {
         List<Customer> customers = CustomerLoginInfoManager.getListOfCustomers();

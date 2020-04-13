@@ -1,9 +1,8 @@
 package com.softwareplex.demo.repositories;
 
-import com.softwareplex.demo.model.Customer;
+import com.softwareplex.demo.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * This class is the customer repository interface
@@ -12,5 +11,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  */
 
 @Repository
-public interface CustomerRepository extends MongoRepository<Customer, String> {
+public interface UserRepository extends MongoRepository<User, String> {
 }

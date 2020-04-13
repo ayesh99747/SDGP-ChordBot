@@ -6,13 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * This class is the Customer class
+ * This class is the User class
  *
  * @author Ayeshmantha Wijayagunathilaka (ID: 2018072)
  */
 @Data
 @Document(collection = "Customers")
-public class Customer {
+public class User {
     @Id
     private String Id;  //This stores the customer id
 
@@ -26,7 +26,7 @@ public class Customer {
     private String password;    //This is the password
 
 
-    public Customer( String customerName, String emailAddress, String username, String password) {
+    public User(String customerName, String emailAddress, String username, String password) {
         this.customerName = customerName;
         this.emailAddress = emailAddress;
         this.username = username;
@@ -67,5 +67,16 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id='" + Id + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

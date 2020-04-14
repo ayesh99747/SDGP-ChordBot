@@ -13,13 +13,14 @@ public class UserLoginController {
         return listOfUsers;
     }
 
-    public static void addCustomerFromDatabase(List<User> listOfCustomersFromDb) {
+    public static void addUsersFromDatabase(List<User> listOfUsersFromDb) {
         listOfUsers.clear();
-        System.out.println("Users added to List: ");
-        for (User user : listOfCustomersFromDb) {
+        System.out.println("[SERVER] - Users added to List: ");
+        for (User user : listOfUsersFromDb) {
             listOfUsers.add(user);
             System.out.println(user);
         }
+        System.out.println("[SERVER] - Server is ready... ");
     }
 
 }

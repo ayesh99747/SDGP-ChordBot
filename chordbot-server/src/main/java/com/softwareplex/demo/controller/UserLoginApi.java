@@ -27,7 +27,7 @@ public class UserLoginApi {
     @ResponseBody
     public void addNewUser(@RequestBody User user) {
         userRepository.insert(user);
-        UserLoginController.addCustomerFromDatabase(userRepository.findAll());
+        UserLoginController.addUsersFromDatabase(userRepository.findAll());
     }
 
     //This url is used to check if a username is unique and returns a boolean accordingly

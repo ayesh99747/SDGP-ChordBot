@@ -16,12 +16,13 @@ import java.nio.file.Paths;
 @RequestMapping("/api/fileupload")
 public class FileUploadApi {
     //Save the uploaded file to this folder
-    private static String UPLOAD_FOLDER = "src//main//java//com//softwareplex//demo//python_files//Uploads//";
+    private static String UPLOAD_FOLDER = "C:\\Users\\ayesh\\SDGP-ChordBot\\chordbot-server\\src\\main\\java\\com\\softwareplex\\demo\\resources\\Uploads\\";
 
     @PostMapping("/uploadmp3")
     public String singleFileUpload(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            System.out.println("Empty File");
+            System.out.println("[SERVER] - Empty File has been uploaded!");
+            return "[Error] - Empty File has been uploaded!";
         }
         String output = "";
         try {
@@ -30,11 +31,12 @@ public class FileUploadApi {
             Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
             output = "File Received: " + file.getOriginalFilename();
-            System.out.println(output);
+            System.out.println("[SERVER] - " + output);
+            FileUploadController.invokeGetter("C:\\Users\\ayesh\\SDGP-ChordBot\\chordbot-server\\src\\main\\java\\com\\softwareplex\\demo\\resources\\Uploads\\audio.wav");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("ERROR");
+            System.out.println(e.toString());
         }
-
         return output;
     }
 

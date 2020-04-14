@@ -24,10 +24,11 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //Customers are read from the database and inserted to the list
+        //Users are read from the database and inserted to the list
         System.out.println();
-        System.out.println("Customers retrieved from db.");
+        System.out.println("Users retrieved from db.");
         List<User> listOfCustomersFromDb = userRepository.findAll();
-        UserLoginController.addCustomerFromDatabase(listOfCustomersFromDb);
+        UserLoginController.addUsersFromDatabase(listOfCustomersFromDb);
     }
+
 }

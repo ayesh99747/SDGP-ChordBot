@@ -1,17 +1,48 @@
-import React,{Component} from 'react';
-import {Jumbotron,Grid,Row,Col,Image,Button} from 'react-bootstrap';
+import React,{useState} from 'react';
+import {Jumbotron,Grid,Row,Col,Image,Button,Card,ListGroup} from 'react-bootstrap';
 import './Home.css';
-export class Home extends Component{ //here we try to create home component as a classt
-    render(){ //here we write what should be render when the component is initiate
-
+const Home = propps => {//here we try to create home component 
         return(
             <div>
                 <div id="background">
                     <div id="background-overlay">
-                    <div className="iconsLinks">
+                        <div class="container-fluid">
+                            <div class="song-card">
+                                <div class="song-cont">
+                                    <iframe width="100%" height="400px" img src="https://images.freeimages.com/images/premium/small-comps/1304/13048661-flamenco-guitar-player.jpg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <div class="song-desc">
+                                    <h2>Playlist</h2> 
+                                    <Card style={{ width: '100%' }}>
+                                        <ListGroup variant="flush">                
+                                            <ListGroup.Item>Song one</ListGroup.Item>          
+                                        </ListGroup>
+                                    </Card>   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid-two">
+                            <div class="song-card">
+                                <div class="song-cont">
+                                    <iframe width="100%" height="400px" img src="https://images.freeimages.com/images/premium/small-comps/1304/13048661-flamenco-guitar-player.jpg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <div class="song-desc">
+                                    <h2>Demo Songs</h2> 
+                                    <Card style={{ width: '100%' }}>
+                                        <ListGroup variant="flush">                
+                                            <ListGroup.Item>Song one</ListGroup.Item>          
+                                        </ListGroup>
+                                    </Card>   
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    {/* <div className="iconsLinks">
                     <a href="/SongLoadPage">
                     <img className="links" src="https://cdn1.iconfinder.com/data/icons/audio-2/512/musicfile-512.png" alt="chord display page" />
-                    <p id="name"> View Chords</p>
+                    <p id="name">Playlist</p>
                     </a>
 
                     <a href="/RecommendSongs">
@@ -28,15 +59,15 @@ export class Home extends Component{ //here we try to create home component as a
                     <img className="links" src="https://img.icons8.com/cotton/2x/like--v3.png" alt="Favourite page" />
                     <p id="name">View Favourites</p>
                     </a>
-                    </div>
-                    <footer className="footer"> 
+                    </div> */}
+                   {/*  <footer className="footer"> 
                         <p className="footer-text">
                             Copyright 2020 Chordbot.All rights reserved
                         </p>     
-                    </footer>
+                    </footer> */}
                 </div>
             </div>
         </div>     
         );
     }
-}
+export default Home;

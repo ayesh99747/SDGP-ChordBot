@@ -1,3 +1,22 @@
+.pic{
+    background-image: url("https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 10;
+ }
+ .pic-overlay{
+    position: absolute;
+    background-color: rgba(0,0,0,0.75);
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 5;
+ }
 .Signup-form{
     width: 100%;
     max-width: 330px;
@@ -13,10 +32,13 @@ input[type=username],input[type=password],input[type=email]{
     border: none;
     background: #f1f1f1;
 }
+.login-name{
+    font-size: 28px;
+}
 .wrap{
 	width:450px;
 	margin:auto;
-	background:#17202A  ;
+	background:rgb(45, 45, 46)  ;
 	margin-top:50px;
 	padding:5px;
 }

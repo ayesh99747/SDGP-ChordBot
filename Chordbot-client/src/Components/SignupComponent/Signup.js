@@ -4,10 +4,12 @@ import{Button,Form,FormGroup,Label,Input} from 'react-bootstrap';
 export class Signup extends Component{
     render(){
         return(
+        <div className="pic">
+        <div className="pic-overlay">
         <div className="wrap">
             <form className="Signup-form">
                 <h1 className="text-center" id="font">
-                    <span  className="font-weight-bold">Sign up</span>
+                    <span  className="login-name">Sign up</span>
                 </h1>
                 <FormGroup>
                     <input type="username" placeholder="Name"/>
@@ -25,7 +27,8 @@ export class Signup extends Component{
                 
             </form>
         </div>
-         
+        </div>
+        </div>
         )
     }
 

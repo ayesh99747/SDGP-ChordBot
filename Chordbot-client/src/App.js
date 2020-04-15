@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import {Home}from './Components/HomeComponent/Home'
+import Home from './Components/HomeComponent/Home'
 import ChordDisplay from './Components/ChordDisplayComponent/ChordDisplay'
 import SongLoadPage from './Components/SongLoadComponent/SongLoadPage'
 import {Navigation} from './Components/NavigationComponent/Navigation'
-import{DemoSong}from './Components/DemoSongComponent/DemoSong'
+import DemoSong from './Components/DemoSongComponent/DemoSong'
 import Login from './Components/UserLoginComponent/Login'
 import{Signup}from './Components/SignupComponent/Signup'
 import{BrowserRouter,Route,Switch} from 'react-router-dom'

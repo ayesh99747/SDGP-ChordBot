@@ -1,20 +1,20 @@
 
 #background{
-    background-image: url("https://images.pexels.com/photos/33597/guitar-classical-guitar-acoustic-guitar-electric-guitar.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-image: url("https://images.pexels.com/photos/2350325/pexels-photo-2350325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     background-size: cover;
     background-position: center center;
     position: relative;
     top: 0;
     bottom: 0;
-    height: 90vh;
+    height: 150vh;
     z-index: 10;
 }
 #background-overlay{
     position: absolute;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.15);
     top: 0;
     bottom: 0;
-    height: 100vh;
+    height: 150vh;
     width: 100%;
     z-index: 5;
 }
@@ -41,20 +41,61 @@ p{
     text-align: center;
 }
 
-.footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
+
+.song-body{
+    background: #ececec;
+}
+
+.container-fluid{
+    width: 90%;
+    padding: 102px 1%;
+    float: left;
+    margin-left: 4%;
+}
+/*apply css to song cards*/
+.song-card{
+    height: 450px;
     width: 100%;
-    background-color: #148F77 ;
-    color: white;
-    text-align: center;
-} 
-.footer-text{
-    font-size: 17px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.song-cont{
+    width: 47%;
+    float: left;
+    padding: 10px 1.5%;
+}
+/*apply css to song description*/
+.song-desc{
+    width: 48%;
+    margin: 0px 1%;
+    float: left;
+    height: 100%;
+	color:black;
+    background-image: url(https://s3.amazonaws.com/peoplepng/wp-content/uploads/2018/02/28124341/Snowflakes-PNG-Transparent-Image-1024x596.png);
+    background-size: cover;
+    background-position: bottom;
+}
+
+.song-desc h2{
+    border-bottom: 1px solid #16a085;;
+    padding-bottom: 5px;
+    color: #16a085;;
+}
+
+.song-desc p{
+    color: #828282;
+	font-size:20px;
 }
 
 
+
+.container-fluid-two{
+    width: 90%;
+    padding: 5px 1%;
+    float: left;
+    margin-left: 4%;
+}
 
 
 

@@ -11,10 +11,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * @author Ayeshmantha Wijayagunathilaka (ID: 2018072)
  */
 @Data
-@Document(collection = "Customers")
+@Document(collection = "Users")
 public class User {
     @Id
-    private String Id;  //This stores the customer id
+    private String Id;  //This stores the user id
 
     @Field("customerName")
     private String customerName;//This is the customer name

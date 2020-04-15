@@ -20,7 +20,7 @@ public class UserLoginController {
             listOfUsers.add(user);
             System.out.println(user);
         }
-        System.out.println("[SERVER] - Server is ready... ");
+
     }
 
 }

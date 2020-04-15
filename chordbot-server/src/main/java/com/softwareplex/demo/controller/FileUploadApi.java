@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @RequestMapping("/api/fileupload")
 public class FileUploadApi {
     //Save the uploaded file to this folder
-    private static String UPLOAD_FOLDER = "src\\main\\resources\\Uploads\\";
+    private static final String UPLOAD_FOLDER = "src\\main\\resources\\Uploads\\";
 
     @PostMapping("/uploadmp3")
     public String singleFileUpload(@RequestParam("file") MultipartFile file) {
@@ -32,7 +32,7 @@ public class FileUploadApi {
             Files.write(path, bytes);
             output = "File Received: " + file.getOriginalFilename();
             System.out.println("[SERVER] - " + output);
-            FileUploadController.invokeGetter("C:\\Users\\ayesh\\SDGP-ChordBot\\chordbot-server\\src\\main\\java\\com\\softwareplex\\demo\\resources\\Uploads\\audio.wav");
+
         } catch (IOException e) {
             System.out.println("ERROR");
             System.out.println(e.toString());

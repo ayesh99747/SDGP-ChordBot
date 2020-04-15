@@ -13,14 +13,14 @@ public class FileUploadController {
 
 
     public static void invokeGetter(String filepath) {
-        try{
-            ProcessBuilder pb = new ProcessBuilder("python","C:\\Users\\ayesh\\SDGP-ChordBot\\chordbot-server\\src\\main\\java\\com\\softwareplex\\demo\\resources\\Chord_Sequencer.py","C:\\Users\\ayesh\\SDGP-ChordBot\\chordbot-server\\src\\main\\java\\com\\softwareplex\\demo\\resources\\Uploads\\audio.wav");
-            Process p = pb.start();
+        PythonInterpreter pythonInterpreter = new PythonInterpreter();
+        pythonInterpreter.exec("from Chord_Sequencer import ChordSequencer");
+        PyClass Chord_SequencerDef = (PyClass) pythonInterpreter.get("ChordSequencer");
+        PyObject Chord_Sequencer = Chord_SequencerDef.__call__();
+        PyObject pyObject = Chord_Sequencer.invoke("getChords",new PyString("audio.wav"));
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String ret = in.readLine();
-            System.out.println("value is : "+ret);
-        }catch(Exception e){System.out.println(e);}
+        System.out.println(pyObject.toString());
     }
+
 
 }

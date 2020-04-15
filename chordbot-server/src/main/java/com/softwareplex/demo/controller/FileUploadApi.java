@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @RequestMapping("/api/fileupload")
 public class FileUploadApi {
     //Save the uploaded file to this folder
-    private static String UPLOAD_FOLDER = "C:\\Users\\ayesh\\SDGP-ChordBot\\chordbot-server\\src\\main\\java\\com\\softwareplex\\demo\\resources\\Uploads\\";
+    private static String UPLOAD_FOLDER = "src\\main\\resources\\Uploads\\";
 
     @PostMapping("/uploadmp3")
     public String singleFileUpload(@RequestParam("file") MultipartFile file) {

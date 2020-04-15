@@ -1,11 +1,7 @@
 import React,{Component} from 'react';
 import {Jumbotron,Grid,Row,Col,Image,Button} from 'react-bootstrap';
 import './Home.css';
-<<<<<<< HEAD
 export class Home extends Component{ //here we try to create home component as a classt
-=======
-export class Home extends Component{ //here we try to create home component as a class
->>>>>>> b50318839ca0696eb00319f3af3cbb780446bf49
     render(){ //here we write what should be render when the component is initiate
 
         return(
@@ -23,11 +19,7 @@ export class Home extends Component{ //here we try to create home component as a
                     <p id="name">Recommended Songs</p>
                     </a>
 
-<<<<<<< HEAD
                     <a href="/DemoSong">
-=======
-                    <a href="/DemoSongs">
->>>>>>> b50318839ca0696eb00319f3af3cbb780446bf49
                     <img className="links" src="https://eversity.edu/sites/default/files/content/paragraphs/text-graphic/checklist.png" alt="Demo song page" />
                     <p id="name">Demo Songs</p>
                     </a>
@@ -37,7 +29,6 @@ export class Home extends Component{ //here we try to create home component as a
                     <p id="name">View Favourites</p>
                     </a>
                     </div>
-<<<<<<< HEAD
                     <footer className="footer"> 
                         <p className="footer-text">
                             Copyright 2020 Chordbot.All rights reserved
@@ -46,17 +37,6 @@ export class Home extends Component{ //here we try to create home component as a
                 </div>
             </div>
         </div>     
-=======
-                    <footer className="footer">
-                            <p className="footer-text">
-                                Copyright 2020 Chordbot.All rights reserved
-                            </p>      
-                    </footer>
-                </div>
-            </div>
-        </div>
-            
->>>>>>> b50318839ca0696eb00319f3af3cbb780446bf49
         );
     }
 }

@@ -11,11 +11,7 @@ export class Navigation extends Component{
                 <Nav.Link className="text-white text-uppercase ml-4 " href="/">Home</Nav.Link>
                 <Nav.Link className="text-white text-uppercase ml-4" href="/SongLoadPage">Playlist</Nav.Link>
                 <Nav.Link className="text-white text-uppercase ml-4" href="/ChordDisplay">View Chords</Nav.Link>
-<<<<<<< HEAD
                 <Nav.Link className="text-white text-uppercase ml-4" href="/Login">Register</Nav.Link>
-=======
-                
->>>>>>> b50318839ca0696eb00319f3af3cbb780446bf49
             </Nav>
         </Navbar>
         )

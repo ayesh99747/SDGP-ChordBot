@@ -1,12 +1,14 @@
-import React,{Component} from 'react';
-import './ChordDisplay.css';
-export class ChordDisplay extends Component{ //here we try to create home component as a class
-    render(){//here we write what should be render when the component is initiate
-        return(
-                <div>
-                    <p id="test">Chord Display page</p>
-                </div>
-            
-        );
-    }
+import React,{useState} from 'react';
+//import {musicTest} from './music/chordtest'
+//import './SongLoadPage.css';
+const ChordDisplay = propps => {
+    const [testone,settestone]=useState("imanthi")
+    const changeText=()=>{settestone("changed one")}   
+    return(
+    <div>
+        <h1 id="text">You clicked {testone} times</h1>
+       <button onClick={changeText}></button>
+    </div>
+    )
 }
+export default ChordDisplay;

@@ -24,7 +24,7 @@
     margin: auto;
     height: 100%;
 } 
-input[type=username],input[type=password],input[type=email]{
+input[type=username],[type=name],input[type=password],input[type=email]{
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -38,7 +38,7 @@ input[type=username],input[type=password],input[type=email]{
 .wrap{
 	width:450px;
 	margin:auto;
-	background:rgb(45, 45, 46)  ;
+	background:rgba(0, 0, 0, 0.65);  ;
 	margin-top:50px;
 	padding:5px;
 }

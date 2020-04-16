@@ -6,7 +6,7 @@ import SongLoadPage from './Components/SongLoadComponent/SongLoadPage'
 import {Navigation} from './Components/NavigationComponent/Navigation'
 import DemoSong from './Components/DemoSongComponent/DemoSong'
 import Login from './Components/UserLoginComponent/Login'
-import{Signup}from './Components/SignupComponent/Signup'
+import Signup from './Components/SignupComponent/Signup'
 import{BrowserRouter,Route,Switch} from 'react-router-dom'
 
 function App() {

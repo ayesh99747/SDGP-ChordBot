@@ -66,4 +66,6 @@ form{
 #account{
     font-size: 16px;
     text-align: center;
+    margin-right: 0px;
+    line-height: 23px;
 }

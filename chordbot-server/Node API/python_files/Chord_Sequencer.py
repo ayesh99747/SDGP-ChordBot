@@ -1,12 +1,15 @@
 from utilities import chord_sequence
 from pickle import load
-from os import listdir
+import sys
+import os
 
 modelName = 'python_files/model/ML_model_ver3.sav'
-fileName = 'python_files/audio/test.wav'
-chords = ' '
+fileName = sys.argv[1]
+chords = ''
 model = load(open(modelName, 'rb')) # call the trained model
 for chord in chord_sequence(model, fileName, 1):
-    chords = chords + chord + " "
+    print(chord, end = ' ') # display chords one by one
 
-print(chords)
+if os.path.exists(".wav"):
+  os.remove(".wav")
+

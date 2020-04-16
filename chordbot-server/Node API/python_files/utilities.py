@@ -24,7 +24,6 @@ def convert(myAudioFile, path='./'):
         os.path.join(path, myAudioFile), format=fmt)
     mono_list = sound_stereo.split_to_mono()
     if len(mono_list) == 1:
-        print('File contains Mono channel only. Can\'t enhance')
         sound_stereo.export(myAudioFile.rsplit('.')[0] + '.wav', format='wav')
         return myAudioFile.rsplit('.')[0] + '.wav'
     sound_monoL = mono_list[0]
@@ -92,18 +91,6 @@ def make_part(file, start, time, name):
 
 
 def all_part(file):
-    # The commented part is really bad code written by Arpit.
-    # However I have fixed most of it.
-    '''
-    f = sf.SoundFile(file)
-    duration = len(f)/f.samplerate
-    i = 0
-    while i + 0.1 < duration :
-        output_name = "output" + str(int(int(i*100)/10)) + ".wav"
-        make_part(file, str(i), "0.1", output_name)
-        i += 0.1
-    return
-    '''
     song = pydub.AudioSegment.from_wav(file)
     duration = song.duration_seconds * 1000
     i = 0
@@ -153,7 +140,6 @@ def analyse(file, model, code):
 
 def chord_sequence(model, file, code):
     file = convert(file)
-    print(file)
     f = sf.SoundFile(file)
     duration = len(f) / f.samplerate
     i = 0

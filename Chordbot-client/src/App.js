@@ -4,9 +4,15 @@ import Home from './Components/HomeComponent/Home'
 import ChordDisplay from './Components/ChordDisplayComponent/ChordDisplay'
 import SongLoadPage from './Components/SongLoadComponent/SongLoadPage'
 import {Navigation} from './Components/NavigationComponent/Navigation'
+<<<<<<< HEAD
+import{DemoSong}from './Components/DemoSongComponent/DemoSong'
+import{Login}from './Components/UserLoginComponent/Login'
+import{Signup}from './Components/SignupComponent/Signup'
+=======
 import DemoSong from './Components/DemoSongComponent/DemoSong'
 import Login from './Components/UserLoginComponent/Login'
 import Signup from './Components/SignupComponent/Signup'
+>>>>>>> 0f616a32838aebb284b6676e1d5569c5b2a197b3
 import{BrowserRouter,Route,Switch} from 'react-router-dom'
 
 function App() {

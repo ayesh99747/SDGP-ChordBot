@@ -1,0 +1,44 @@
+/demoSongs/getSongs [GET]
+- This is used to get all the demo songs in the database
+/demoSongs/getChords [POST]
+- This is used to get all the demo songs in the database
+- You have to send the id within the post request body
+
+playlistSongs/getSongs [GET]
+- This is used to get all the playlist songs in the database
+playlistSongs/getChords [POST]
+- This is used to get all the playlist songs in the database
+- You have to send the id within the post request body
+
+files/uploadAudio [POST]
+- This is the upload mp3 link 
+- You have to attach the mp3 with the value "mp3": (file) and send
+
+users/addUser [POST]
+- This is used to add the used 
+- The body should look like this 
+{
+	"customerName": "qwe", 
+	"emailAddress": "qwe", 
+	"username": "qwe",
+	"password": "qwe"
+}
+
+
+users/isUsernamePresent [POST]
+- This to check if the username is present
+- This is used in the sign up form to acoid duplicate usernames
+- The body of the request should look like this
+{
+	"username": "asdsadasd"
+}
+
+
+
+users/validateLogin [POST]
+- This is used to valiadte the login 
+- The body of the request should look like this
+{
+	"username": "qwe",
+	"password": "asdasd"
+}

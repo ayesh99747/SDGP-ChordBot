@@ -9,7 +9,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import accuracy_score
 
 model = SGDClassifier(loss='hinge', learning_rate='constant', eta0=0.1, max_iter=2000, tol=1e-3)
-dataset = pandas.read_csv("PCP_train_data.csv") # read and load data from csv file
+dataset = pandas.read_csv("Dataset.csv") # read and load data from csv file
 shapeDataset = dataset.shape # shape dataset
 rows = shapeDataset[0] # rows of the dataset (2000)
 colums = shapeDataset[1] - 1 # columns of the dataset (12 chords)

@@ -5,10 +5,11 @@ import os
 
 modelName = 'python_files/model/ML_model_ver3.sav'
 fileName = sys.argv[1]
-chords = ''
+
 model = load(open(modelName, 'rb')) # call the trained model
 for chord in chord_sequence(model, fileName, 1):
     print(chord, end = ' ') # display chords one by one
+
 
 if os.path.exists(".wav"):
   os.remove(".wav")

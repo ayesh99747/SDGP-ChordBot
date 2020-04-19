@@ -12,7 +12,7 @@ db.initialize(
     // successCallback
 
     //Insert user
-    router.post("/addUser", (request, response) => {
+    router.post("/addUser", async (request, response) => {
       dbCollection.insertOne(
         {
           customerName: request.body.customerName,
@@ -22,13 +22,15 @@ db.initialize(
         },
         (error, result) => {
           if (error) throw error;
-          response.send("User created successfully!");
+          response.status(200).json({
+            message : "User created successfully!",
+          });
         }
       );
     });
 
     //find if username already exists
-    router.post("/isUsernamePresent", (request, response) => {
+    router.post("/isUsernamePresent", async (request, response) => {
       const postUsername = request.body.username;
 
       dbCollection.findOne({ username: postUsername }, (error, result) => {
@@ -42,7 +44,7 @@ db.initialize(
     });
 
     //validate if username and password exist
-    router.post("/validateLogin", (request, response) => {
+    router.post("/validateLogin", async (request, response) => {
       const postUsername = request.body.username;
       const postPassword = request.body.password;
 
@@ -51,9 +53,13 @@ db.initialize(
         (error, result) => {
           if (error) throw error;
           if (result != null) {
-            response.send(true);
+            response.status(200).json({
+              message : "Login successful!",
+            });
           } else {
-            response.send(false);
+            response.status(404).json({
+              message : "User not found!",
+            });
           }
         }
       );

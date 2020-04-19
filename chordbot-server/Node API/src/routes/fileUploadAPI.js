@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
+var fs = require('fs');
+
 
 router.post("/uploadAudio", async (req, res) => {
   try {
     if (!req.files) {
-      res.send({
+      res.status(500).send({
         status: false,
         message: "File upload failed!",
       });
@@ -20,11 +22,15 @@ router.post("/uploadAudio", async (req, res) => {
         ffmpeg(fileLocation)
           .toFormat("wav")
           .on("error", (err) => {
-            console.log("An error occurred: " + err.message);
+           //console.log("An error occurred: " + err.message);
+           response.status(500).send({
+            status: false,
+            message: "Error in converting song!",
+          });
           }).on("progress", (progress) => {
-            console.log(JSON.stringify(progress));
+            //console.log(JSON.stringify(progress));
           }).on("end", () => {
-            console.log("Processing finished !");
+            //console.log("Processing finished !");
           }).save(newFileLocation); //path where you want to save your file
         
         fileLocation = newFileLocation;
@@ -45,9 +51,10 @@ router.post("/uploadAudio", async (req, res) => {
             fs.unlinkSync(oldFileLocation);
           } catch(err) {
           }
-          res.send({
+          res.status(200).send({
             status: true,
             message: array,
+            name :  mp3.name,
           });
         });
       } else {

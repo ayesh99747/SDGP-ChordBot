@@ -9,7 +9,7 @@ function initialize(
     successCallback,
     failureCallback
 ) {
-    MongoClient.connect(dbConnectionUrl, function(err, dbInstance) {
+    MongoClient.connect(dbConnectionUrl, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbInstance) {
         if (err) {
             console.log(`[MongoDB connection] ERROR: ${err}`);
             failureCallback(err);

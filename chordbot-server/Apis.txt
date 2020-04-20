@@ -1,20 +1,31 @@
-/demoSongs/getSongs [GET]
+http://localhost:8000/demoSongs/getSongs [GET]
 - This is used to get all the demo songs in the database
-/demoSongs/getChords [POST]
+
+http://localhost:8000/demoSongs/getChords/{id} [POST]
 - This is used to get all the demo songs in the database
 - You have to send the id within the post request body
 
-playlistSongs/getSongs [GET]
+
+
+
+http://localhost:8000/playlistSongs/getSongs [GET]
 - This is used to get all the playlist songs in the database
-playlistSongs/getChords [POST]
+
+http://localhost:8000/playlistSongs/getChords/{id} [POST]
 - This is used to get all the playlist songs in the database
 - You have to send the id within the post request body
 
-files/uploadAudio [POST]
+
+
+
+http://localhost:8000/files/uploadAudio [POST]
 - This is the upload mp3 link 
 - You have to attach the mp3 with the value "mp3": (file) and send
 
-users/addUser [POST]
+
+
+
+http://localhost:8000/users/addUser [POST]
 - This is used to add the used 
 - The body should look like this 
 {
@@ -25,7 +36,7 @@ users/addUser [POST]
 }
 
 
-users/isUsernamePresent [POST]
+http://localhost:8000/users/isUsernamePresent [POST]
 - This to check if the username is present
 - This is used in the sign up form to acoid duplicate usernames
 - The body of the request should look like this
@@ -34,8 +45,7 @@ users/isUsernamePresent [POST]
 }
 
 
-
-users/validateLogin [POST]
+http://localhost:8000/users/validateLogin [POST]
 - This is used to valiadte the login 
 - The body of the request should look like this
 {

@@ -11,7 +11,7 @@ db.initialize(
   collectionName,
   function (dbCollection) {
     // get all the songs from the database
-    router.get("/getSongs", async (request, response) => {
+    router.get("/getSongs", (request, response) => {
       dbCollection.find().toArray((error, result) => {
         if (error) throw error;
         response.status(200).json(result);
@@ -19,7 +19,7 @@ db.initialize(
     });
 
     //get the chords for a given songid
-    router.get("/getChords/:id", async (request, response) => {
+    router.get("/getChords/:id", (request, response) => {
       const songid = request.params.id;
       dbCollection.findOne({ songID: songid }, (error, result) => {
         if (error) throw error;

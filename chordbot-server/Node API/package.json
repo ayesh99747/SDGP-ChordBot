@@ -2,11 +2,11 @@
   "name": "chordbot-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon index.js",
-    "start": "node index.js"
+    "serve": "nodemon ./index.js",
+    "start": "node ./index.js"
   },
   "author": "Ayeshmantha W",
   "license": "ISC",
@@ -17,9 +17,11 @@
     "fluent-ffmpeg": "^2.1.2",
     "http": "0.0.1-security",
     "mp3-to-wav": "^0.1.11",
+    "music-tempo": "^1.0.3",
     "python-shell": "^1.0.8",
     "ts-node": "^8.8.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

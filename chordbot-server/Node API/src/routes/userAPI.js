@@ -12,7 +12,7 @@ db.initialize(
     // successCallback
 
     //Insert user
-    router.post("/addUser", async (request, response) => {
+    router.post("/addUser", (request, response) => {
       dbCollection.insertOne(
         {
           customerName: request.body.customerName,

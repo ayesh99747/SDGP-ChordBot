@@ -48,9 +48,10 @@ router.post("/uploadAudio", async (req, res) => {
           "./python_files/bpm_detector.py",
           fileLocation,
         ]);
+        
         process1.stdout.on("data", function (data1) {
           bpm = parseInt(data1);
-          
+
         });
 
         var spawn2 = require("child_process").spawn;

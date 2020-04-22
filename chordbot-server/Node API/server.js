@@ -37,6 +37,6 @@ app.use("/playlistSongs", playlistSongs);
 var users = require("./src/routes/userAPI.js");
 app.use("/users", users);
 
-const PORT = process.env.PORT || 8000;
-
-app.listen(PORT, () => console.log(`App is listening on port ${PORT}.`));
+app.listen(process.env.PORT || 8000, function(){
+  console.log('Your node js server is running');
+});

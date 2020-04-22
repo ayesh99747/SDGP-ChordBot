@@ -8,17 +8,11 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
-    "font-awesome": "^4.7.0",
-    "node-sass": "^4.11.0",
-    "normalize.css": "^8.0.1",
+    "query-string": "^6.12.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0",
-<<<<<<< HEAD
     "react-jinke-music-player": "^4.11.2",
-=======
-    "react-mp3-player": "^0.8.2",
->>>>>>> 4be99ac2adc8e618cbe0ed5a03d76ed0f3196527
     "react-responsive-music-player": "^0.4.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
@@ -46,9 +40,6 @@
   },
   "devDependencies": {
     "css-loader": "^3.4.2",
-    "style-loader": "^1.1.3",
-    "stylelint": "^10.0.1",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-scss": "^3.6.0"
+    "style-loader": "^1.1.3"
   }
 }

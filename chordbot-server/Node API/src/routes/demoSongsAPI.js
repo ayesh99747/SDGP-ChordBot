@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
-var ffmpeg = require("fluent-ffmpeg");
-var fs = require("fs");
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath(ffmpegPath);
+
+const fs = require("fs");
 const db = require("./db.js");
 const dbName = "Chordbot-Database";
 const collectionName = "DemoSongs";
@@ -40,7 +43,7 @@ db.initialize(
           ffmpeg(mp3Location)
             .toFormat("wav")
             .on("error", (err) => {
-              //console.log("An error occurred: " + err.message);
+              console.log("An error occurred: " + err.message);
               response.status(500).send({
                 status: false,
                 message: "Error in converting song!",

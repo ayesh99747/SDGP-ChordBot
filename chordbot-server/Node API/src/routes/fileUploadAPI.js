@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 var fs = require('fs');
-var ffmpeg = require("fluent-ffmpeg");
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath(ffmpegPath);
 
 router.post("/uploadAudio", async (req, res) => {
   try {

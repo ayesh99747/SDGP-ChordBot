@@ -20,6 +20,7 @@ db.initialize(
 
     //get the chords for a given songid
     router.get("/getChords/:id", (request, response) => {
+      console.log(request);
       const songid = request.params.id;
       dbCollection.findOne({ songID: songid }, (error, result) => {
         if (error) throw error;
@@ -65,8 +66,7 @@ db.initialize(
             var array = str.split(" ");
             try {
               fs.unlinkSync(fileLocation);
-            } catch (err) {
-            }
+            } catch (err) {}
             response.status(200).send({
               status: true,
               message: array,

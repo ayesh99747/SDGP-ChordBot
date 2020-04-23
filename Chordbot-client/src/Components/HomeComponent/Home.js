@@ -30,7 +30,7 @@ const Home = (props) => {//create home component
         function fetchsongs(){
             const apiURL='http://localhost:8000/playlistSongs/getSongs'
             const apiDemoURL='http://localhost:8000/playlistSongs/getSongs'
-            //fetch(apiURL)
+            fetch(apiURL)
                // .then(res => res.json())
                 //.then(data=>{
                     //console.log(data);
@@ -62,7 +62,8 @@ const Home = (props) => {//create home component
                                       songlist.map(item =>{//we gonna map the card blocks it is like a for loop
                                         return(
                                              //here we call the song by id when user clicks on the url it will get the song by songid
-                                         <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/?id=${item.songid}`)}>
+                                        // <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/?id=${item.songid}`)}>
+                                        <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/?${queryString.stringify({id: item.songid})}`)}>  
                                             <ListGroup variant="flush">                
                                             <Container> 
                                                     <Row md={4}>
@@ -89,9 +90,7 @@ const Home = (props) => {//create home component
                                       songDemolist.map(item =>{//we gonna map the card blocks it is like a for loop
                                         return(
                                              //here we call the song by id when user clicks on the url it will get the song by songid
-                                         <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/?${queryString.stringify({
-                                           id: item.songid
-                                          })}`)}>  
+                                         <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/?${queryString.stringify({id: item.songid})}`)}>  
                                             <ListGroup variant="flush">                
                                             <Container>
                                                     <Row md={4}>

@@ -25,7 +25,7 @@ const ChordDisplay = ({location, match, ...props})=> {
           //.then(data=>{
               //console.log(data);
           //})
-          alert('fetchsongs');
+         // alert('fetchsongs');
           axios.get(apiURL)
           .then(res => {
               debugger;

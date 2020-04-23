@@ -1,12 +1,12 @@
 //AddModule dependencies.
 const express = require("express");
+var cors = require("cors");
 var fileUpload = require("express-fileupload");
 var bodyParser = require("body-parser");
 
-
 //Define Application object
 var app = express();
-
+app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.static("uploads"));
@@ -20,7 +20,7 @@ app.use(
   })
 );
 
-app.get("/",  (request, response) => {
+app.get("/", (request, response) => {
   response.send("Welcome to chorbot server!");
 });
 
@@ -37,6 +37,7 @@ app.use("/playlistSongs", playlistSongs);
 var users = require("./src/routes/userAPI.js");
 app.use("/users", users);
 
-app.listen(process.env.PORT || 8000, function(){
-  console.log('Your node js server is running');
+const PORT = 8000 || process.env.PORT;
+app.listen(PORT, function () {
+  console.log(`Your node js server is running on port - ${PORT}`);
 });

@@ -1,191 +1,222 @@
-import React,{useState} from 'react';
-import {Jumbotron,Grid,Row,Col,Image,Button,Card,ListGroup,Container} from 'react-bootstrap';
-import axios from 'axios';
-import './Home.css';
-<<<<<<< HEAD
-const Home = (props) => {//create home component 
-        const songlist= 
-         [
-             {songid:"5e975ac65be3535ce474e007",songName:"Johnny B. Goode",imageName:"assets/images/jbgoode.jpg",artist:"Chuck Berry",genre:"Rock"},
-             {songid:"5e975ac65be3535ce474e008",songName:"Blowin In The Wind",imageName:"assets/images/inTheWind.jpg",artist:"Bob Dylan",genre:"Folk/Pop"},
-             {songid:"5e975ac65be3535ce474e009",songName:"Stairway To Heaven",imageName:"assets/images/stairwayToHeaven.jpg",artist:"Led Zeppelin",genre:"Rock/Hard Rock"},
-             {songid:"5e975ac65be3535ce474e00a",songName:"All Along The Watchtower",imageName:"assets/images/watchtowerHendrix.jpg",artist:"Jimi Hendrix",genre:"Classic Rock/Psychedelic Rock"},
-             {songid:"5e975ac65be3535ce474e00b",songName:"What A Wonderful World",imageName:"assets/images/wonderfulWorld.jpg",artist:"Louis Armstrong",genre:"Pop"}
-         ]
-         const songDemolist= 
-         [
-             {songid:"5e975ac35be3535ce474e002",songName:"Imagine",imageName:"assets/images/imagine.jpg",artist:"John Lennon",genre:"Rock/Pop"},
-             {songid:"5e975ac55be3535ce474e003",songName:"Hey Jude",imageName:"assets/images/heyJude.jpg",artist:"The Beatles",genre:"Country Music"},
-             {songid:"5e975ac55be3535ce474e004",songName:"(I Can’t Get No) Satisfaction",imageName:"assets/images/satisfaction.jpg",artist:"The Rolling Stones",genre:"Rock"},
-             {songid:"5e975ac55be3535ce474e005",songName:"Good Vibrations",imageName:"assets/images/goodVibrations.jpg",artist:"The Beach Boys",genre:"Pop"},
-             {songid:"5e975ac65be3535ce474e006",songName:"Smells Like Teen Spirit",imageName:"assets/images/teenSpirit.jpg",artist:"Nirvana",genre:"Rock/Alternative"}
-         ]
- 
-        function App(){
-            const[songlist,setsonglist]=useState(null)
-            const apiURL='https://api.randomuser.me'
-        
-            function fetchsongs(){
-                //fetch(apiURL)
-                   // .then(res => res.json())
-                    //.then(data=>{
-                        //console.log(data);
-                    //})
-                    alert('fetchsongs');
-=======
-<<<<<<< HEAD
-export class Home extends Component{ //here we try to create home component as a classt
-    render(){ //here we write what should be render when the component is initiate
-=======
-const Home = propps => {//create home functional component 
-        const songlist=[
-            {songid:"5e975ac65be3535ce474e007",songName:"Johnny B. Goode",imageName:"assets/images/jbgoode.jpg",artist:"Chuck Berry",genre:"Rock"},
-            {songid:"5e975ac65be3535ce474e008",songName:"Blowin' In The Wind",imageName:"assets/images/inTheWind.jpg",artist:"Bob Dylan",genre:"Folk/Pop"},
-            {songid:"5e975ac65be3535ce474e009",songName:"Stairway To Heaven",imageName:"assets/images/stairwayToHeaven.jpg",artist:"Led Zeppelin",genre:"Rock/Hard Rock"},
-            {songid:"5e975ac65be3535ce474e00a",songName:"All Along The Watchtower",imageName:"assets/images/watchtowerHendrix.jpg",artist:"Jimi Hendrix",genre:"Classic Rock"},
-            {songid:"5e975ac65be3535ce474e00b",songName:"What A Wonderful World",imageName:"assets/images/wonderfulWorld.jpg",artist:"Louis Armstrong",genre:"Pop"}
-        ]
-        const songDemolist=[
-            {songid:"5e975ac35be3535ce474e002",songName:"Imagine",imageName:"assets/images/imagine.jpg",artist:"John Lennon",genre:"Rock/Pop"},
-            {songid:"5e975ac55be3535ce474e003",songName:"Hey Jude",imageName:"assets/images/heyJude.jpg",artist:"The Beatles",genre:"Country Music"},
-            {songid:"5e975ac55be3535ce474e004",songName:"(I Can’t Get No) Satisfaction",imageName:"assets/images/satisfaction.jpg",artist:"The Rolling Stones",genre:"Rock"},
-            {songid:"5e975ac55be3535ce474e005",songName:"Good Vibrations",imageName:"assets/images/goodVibrations.jpg",artist:"The Beach Boys",genre:"Pop"},
-            {songid:"5e975ac65be3535ce474e006",songName:"Smells Like Teen Spirit",imageName:"assets/images/teenSpirit.jpg",artist:"Nirvana",genre:"Rock/Alternative"}
->>>>>>> 0f616a32838aebb284b6676e1d5569c5b2a197b3
->>>>>>> 4be99ac2adc8e618cbe0ed5a03d76ed0f3196527
+import React, { useState, useEffect } from "react";
+import queryString from "query-string";
+import isEmpty from "lodash/isEmpty";
+import {
+  Row,
+  Col,
+  Image,
+  Button,
+  Card,
+  ListGroup,
+  Container,
+} from "react-bootstrap";
+import axios from "axios";
+import "./Home.css";
+const Home = (props) => {
+  //create home component
+  /* const songlist = [
+    {
+      songid: "5e975ac65be3535ce474e007",
+      songName: "Johnny B. Goode",
+      imageName: "src/assets/images/jbgoode.jpg", 
+      artist: "Chuck Berry",
+      genre: "Rock",
+    },
+    {
+      songid: "5e975ac65be3535ce474e008",
+      songName: "Blowin In The Wind",
+      imageName: "src/assets/images/inTheWind.jpg",
+      artist: "Bob Dylan",
+      genre: "Folk/Pop",
+    },
+    {
+      songid: "5e975ac65be3535ce474e009",
+      songName: "Stairway To Heaven",
+      imageName: "src/assets/images/stairwayToHeaven.jpg",
+      artist: "Led Zeppelin",
+      genre: "Rock/Hard Rock",
+    },
+    {
+      songid: "5e975ac65be3535ce474e00a",
+      songName: "All Along The Watchtower",
+      imageName: "src/assets/images/watchtowerHendrix.jpg",
+      artist: "Jimi Hendrix",
+      genre: "Classic Rock/Psychedelic Rock",
+    },
+    {
+      songid: "5e975ac65be3535ce474e00b",
+      songName: "What A Wonderful World",
+      imageName: "src/assets/images/wonderfulWorld.jpg",
+      artist: "Louis Armstrong",
+      genre: "Pop",
+    },
+  ]; */
+  /* const songDemolist = [
+    {
+      songid: "5e975ac35be3535ce474e002",
+      songName: "Imagine",
+      imageName: "src/assets/images/imagine.jpg",
+      artist: "John Lennon",
+      genre: "Rock/Pop",
+    },
+    {
+      songid: "5e975ac55be3535ce474e003",
+      songName: "Hey Jude",
+      imageName: "src/assets/images/heyJude.jpg",
+      artist: "The Beatles",
+      genre: "Country Music",
+    },
+    {
+      songid: "5e975ac55be3535ce474e004",
+      songName: "(I Can’t Get No) Satisfaction",
+      imageName: "src/assets/images/satisfaction.jpg",
+      artist: "The Rolling Stones",
+      genre: "Rock",
+    },
+    {
+      songid: "5e975ac55be3535ce474e005",
+      songName: "Good Vibrations",
+      imageName: "src/assets/images/goodVibrations.jpg",
+      artist: "The Beach Boys",
+      genre: "Pop",
+    },
+    {
+      songid: "5e975ac65be3535ce474e006",
+      songName: "Smells Like Teen Spirit",
+      imageName: "src/assets/images/teenSpirit.jpg",
+      artist: "Nirvana",
+      genre: "Rock/Alternative",
+    },
+  ]; */
 
-                    axios.get(apiURL)
-                    .then(res => {
-                        debugger;
-                        var data = res.data;
-                        
-                    });
-            };
-        }    
-        /* const  [hasError, setErrors] =  useState(false)
-        const  [planets,setPlanets ]= useState({})
-        fetch("http://localhost:8000/playlistSongs/getSongs",{
-            "method": "GET",
-            "headers": {
-                    "x-rapidapi-host": "fairestdb.p.rapidapi.com",
-                    "x-rapidapi-key": "apikey"
-            }
-        })
+  const [playListSongs, setPlayListsonglist] = useState([]);
+  const [demoSongs, setDemoSongs] = useState([]);
 
-        .then(response => response.json())
-        .then(response => {
-            this.setState({
-                friends: response
-            })
-        })
-        .catch(err => { console.log(err); 
-        }); */
-        
+  useEffect(() => { //calling functions
+    fetchPlayListSongs();
+    fetchDemoSongs();
+  }, []);
 
-        //array list of songs 
-        return(
-            <div>
-                 <div id="background">
-                    <div id="background-overlay">
-                        <div class="container-fluid">
-                            <div class="song-card">
-                                <div class="song-cont">
-                                    < img src="https://chordify.net/img/channels/getting-started.jpg" frameborder="0"/>
-                                    <p>Are you a novice player? Pick one of these easy-to-play songs and start jamming! These songs are hand picked to start your journey as a guitar player.Get used to new chords and riffs to advance your skills.</p>                              
-                                </div> 
-                                <div class="song-desc">
-                                    <h2>Playlist</h2> 
-                                    {
-                                      songlist.map(item =>{//we gonna map the card blocks it is like a for loop
-                                        return(
-                                             //here we call the song by id when user clicks on the url it will get the song by songid
-                                         <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/${item.songid}`)}>
-                                          
-                                            <ListGroup variant="flush">                
-                                            <Container>
-                                                
-                                                    <Row md={4}>
-                                                        <Col xs={6} md={4}> <Image src={item.imageName} rounded /></Col>
-                                                        <Col>{item.songName}</Col>
-                                                        <Col>{item.artist}</Col>
-                                                        <Col>{item.genre}</Col>
-                                                    </Row>
-                                            </Container>         
-                                            </ListGroup>
-                                        </Card>   
-                                    )
-                                    })
-                                    }
-                                </div>
-                            </div>
-                        </div>
+  async function fetchPlayListSongs() {
+    const apiURL = "http://localhost:8000/playlistSongs/getSongs";//url to get the playlist song detail
+    const response = await axios.get(apiURL);//append details by getting from the data list
+    setPlayListsonglist(response.data);
+  }
 
-<<<<<<< HEAD
-                    <a href="/RecommendSongs">
-                    <img className="links" src="https://www.lakedistrictlodgeholidays.co.uk/wp-content/uploads/2020/01/icon-recommend.png" alt="Recommended song page" />
-                    <p id="name">Recommended Songs</p>
-                    </a>
+  async function fetchDemoSongs() {
+    const apiURL = "http://localhost:8000/demoSongs/getSongs";
+    const response = await axios.get(apiURL);
+    setDemoSongs(response.data);
+  }
 
-                    <a href="/DemoSongs">
-                    <img className="links" src="https://eversity.edu/sites/default/files/content/paragraphs/text-graphic/checklist.png" alt="Demo song page" />
-                    <p id="name">Demo Songs</p>
-                    </a>
-
-                    <a href="/FavouritesSong">
-                    <img className="links" src="https://img.icons8.com/cotton/2x/like--v3.png" alt="Favourite page" />
-                    <p id="name">View Favourites</p>
-                    </a>
-                    </div>
-
-                    <footer className="footer"> 
-                        <p className="footer-text">
-                            Copyright 2020 Chordbot.All rights reserved
-                        </p>     
-                    </footer>
-                    </div>
-                </div>     
-                    <footer className="footer">
-                            <p className="footer-text">
-                                Copyright 2020 Chordbot.All rights reserved
-                            </p>      
-                    </footer>
+  return (
+    <div>
+      <div id="background">
+        <div id="background-overlay">
+          <div class="container-fluid">
+            <div class="song-card">
+              <div class="song-cont">
+                <img
+                  src="https://chordify.net/img/channels/getting-started.jpg"
+                  frameborder="0"
+                />
+                <p>
+                  Are you a novice player? Pick one of these easy-to-play songs
+                  and start jamming! These songs are hand picked to start your
+                  journey as a guitar player.Get used to new chords and riffs to
+                  advance your skills.
+                </p>
+              </div>
+              <div class="song-desc">
+                <h2>Playlist</h2>
+                {!isEmpty(playListSongs)//validate songs are not empty
+                  ? playListSongs.map((item) => {
+                      //we gonna map the card blocks it is like a for loop
+                      return (
+                        //here we call the song by id when user clicks on the url it will get the song by songid
+                        <Card
+                          style={{ width: "100%" }}
+                          onClick={() =>
+                            props.history.push(
+                              `/ChordDisplay/?id=${item.songID}`
+                            )
+                          }
+                        >
+                          <ListGroup variant="flush">
+                            <Container>
+                              <Row md={4}>
+                                <Col xs={6} md={4}>
+                                  {" "}
+                                  <Image src={item.imageName} rounded />
+                                </Col>
+                                <Col>{item.songName}</Col>
+                                <Col>{item.artist}</Col>
+                                <Col>{item.genre}</Col>
+                              </Row>
+                            </Container>
+                          </ListGroup>
+                        </Card>
+                      );
+                    })
+                  : ""}
+              </div>
             </div>
-=======
-                        <div class="container-fluid-two">
-                            <div class="song-card">
-                                <div class="song-desc">
-                                    <h2>Demo Songs</h2> 
-                                    {
-                                      songDemolist.map(item =>{//we gonna map the card blocks it is like a for loop
-                                        return(
-                                             //here we call the song by id when user clicks on the url it will get the song by songid
-                                         <Card style={{ width: '100%' }} onClick={()=>props.history.push(`/ChordDisplay/${item.songid}`)}>  
-                                            <ListGroup variant="flush">                
-                                            <Container>
-                                                    <Row md={4}>
-                                                        <Col xs={6} md={4}> <Image src="item.imageName" rounded /></Col>
-                                                        <Col>{item.songName}</Col>
-                                                        <Col>{item.artist}</Col>
-                                                        <Col>{item.genre}</Col>
-                                                    </Row>
-                                            </Container>         
-                                            </ListGroup>
-                                        </Card>   
-                                    )})
-                                    }
-                                </div>
-                                <div class="song-cont">
-                                    <img src="https://learnenglishteens.britishcouncil.org/sites/teens/files/field/image/istock_000016090616small_0.jpg" frameborder="0"/>
-                                    <p>When the world is struggling, there is always the love of music to lift our spirits and to keep us connected and relaxed. Here are some tracks to enhance our sense of togetherness, without physically being together.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>     
->>>>>>> 0f616a32838aebb284b6676e1d5569c5b2a197b3
-        );
-    }
-export default Home;
+          </div>
 
-                    
+          <div class="container-fluid-two">
+            <div class="song-card">
+              <div class="song-desc">
+                <h2>Demo Songs</h2>
+                {!isEmpty(playListSongs)
+                  ? demoSongs.map((item) => {
+                      //we gonna map the card blocks it is like a for loop
+                      return (
+                        //here we call the song by id when user clicks on the url it will get the song by songid
+                        <Card
+                          style={{ width: "100%" }}
+                          onClick={() =>
+                            props.history.push(
+                              `/ChordDisplay/?${queryString.stringify({
+                                id: item.songID,
+                              })}`
+                            )
+                          }
+                        >
+                          <ListGroup variant="flush">
+                            <Container>
+                              <Row md={4}>
+                                <Col xs={6} md={4}>
+                                  {" "}
+                                  <Image src={item.imageName} rounded />
+                                </Col>
+                                <Col>{item.songName}</Col>
+                                <Col>{item.artist}</Col>
+                                <Col>{item.genre}</Col>
+                              </Row>
+                            </Container>
+                          </ListGroup>
+                        </Card>
+                      );
+                    })
+                  : ""}
+              </div>
+              <div class="song-cont">
+                <img
+                  src="https://learnenglishteens.britishcouncil.org/sites/teens/files/field/image/istock_000016090616small_0.jpg"
+                  frameborder="0"
+                />
+                <p>
+                  When the world is struggling, there is always the love of
+                  music to lift our spirits and to keep us connected and
+                  relaxed. Here are some tracks to enhance our sense of
+                  togetherness, without physically being together.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Home;

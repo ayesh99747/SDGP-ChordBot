@@ -1,38 +1,30 @@
-import numpy as np
-import pickle
-from utilities import CtoN , NtoC , convert
-from PCP import pcp
 import os
+import pickle
+from PCP import pcp
+import numpy as numpy
+from utilities import convert, CtoN , NtoC
 from sklearn.kernel_approximation import AdditiveChi2Sampler
-from sklearn.kernel_approximation import RBFSampler
 
-file = str(input("Enter filename: "))
-print('file',file)
-prev_model='ML_model.sav'
-myModel = pickle.load(open(prev_model, 'rb'))
-sampler = AdditiveChi2Sampler()
-if file.rsplit('.')[-1]!='wav':
-	convert(file)
-X = pcp(file)
-X = np.array([X])
-X = sampler.fit_transform(X)
-pred = myModel.predict(X)
-print("Predicted chord : ", NtoC(pred[0]))
-ans=input("Is chord correct?[yes|no]\n")
+fileName = str(input("Filename: "))
+modelName='ML_model.sav'
+mlModel = pickle.load(open(modelName, 'rb')) # read the model which is written in binary format
+addictiveSampler = AdditiveChi2Sampler()
+if fileName.rsplit('.')[-1]!='wav': # if file is not a wav file convert to mono
+	convert(fileName)
+newData = pcp(fileName) # pass file to the pcp method
+newData = numpy.array([newData])
+newData = addictiveSampler.fit_transform(newData)
+prediction = mlModel.predict(newData) # predict chord and get index
+print("Chord predicted is : ", NtoC(prediction[0]))
+ans=input("Predicted chord is correct? [yes|no]\n")
 if ans=='yes':
-	print('Thanks you.')
+	print('Model has predicted the correct chord')
 else:
-	print('Sorry, Train the model further.')
-	print('Enter the correct chord')
-	t_chord = input("Enter correct chord of the wav file: ")
-	true_value = np.array([CtoN(t_chord)])
-	if true_value != pred:
-		myModel.partial_fit(X, true_value)
-		pickle.dump(myModel, open(prev_model, 'wb'))
-		print('Model has taken the input into account and corrected itself.')
+	correctChord = input("Model has predicted wrong chord. Enter the correct chord to further train the model : ")
+	correctPrediction = numpy.array([CtoN(correctChord)]) 
+	if correctPrediction != prediction: # check whether model predicted chord and userinput chord are equal
+		mlModel.partial_fit(newData, correctPrediction)
+		pickle.dump(mlModel, open(modelName, 'wb')) # overwrite model in binary format
+		print('Model trained')
 	else:
-		print('Model predicted the correct chord before')
-        
-myModel = pickle.load(open('ML_model.sav', 'rb'))
-pred = myModel.predict(X)
-print(accuracy_score(pred, y))
+		print('Model predicted the correct chord before')        

@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./ChordDisplay.css";
 import MusicPlayer from "react-responsive-music-player";
 import playlist from "../../services/shapes/audio/playlist";
+import demoSongs from "../../services/shapes/audio/demoSongs";
 import queryString from "query-string";
+import isEmpty from "lodash/isEmpty";
 import axios from "axios";
+import * as ReactBootStrap from "react-bootstrap";
 const ChordDisplay = ({ location, match, ...props }) => {
-  //here we create Chord display as a functional component 
-  const [chords,setchords]=useState(null)
+  //here we create Chord display as a functional component
+  const [chords, setchords] = useState(null);
   const [demoChords, setdemoChords] = useState(null);
   const [selectedTrack, setSelectedtrack] = useState([
     {
@@ -17,32 +20,30 @@ const ChordDisplay = ({ location, match, ...props }) => {
     },
   ]);
   useEffect(() => {
-    const search = location ? queryString.parse(location.search) : {};
-    if (search.type === "playlist") {//check by the song type and run the function
+    const search = location ? queryString.parse(location.search) : {}; 
+    if (search.type === "playlist") {
+      //check by the song type and run the function
       fetchsongsById(search.id);
+      playableSong(playlist, search);
     } else {
       fetchdemosongsById(search.id);
+      playableSong(demoSongs, search);
     }
-    playableSong(playlist, search);
-  },[location.pathname]);
+  }, [location.pathname]);
 
   function fetchsongsById(url) {
-    const apiURL = `http://localhost:8000/playlistSongs/getChords/${url}`
+    const apiURL = `http://localhost:8000/playlistSongs/getChords/${url}`;
     axios.get(apiURL).then((res) => {
-      //var data = res.data;
-      setchords (res.data.message);
+      setchords(res.data.message);
     });
   }
-
   function fetchdemosongsById(urlDemo) {
     const apiURLDemo = `http://localhost:8000/demoSongs/getChords/${urlDemo}`;
     axios.get(apiURLDemo).then((res) => {
-      //var data = res.data;
       console.log(res.data);
       setdemoChords(res.data.message);
     });
   }
-
   // New Fuction for Playing the song
   function playableSong(playlist, search) {
     playlist.map((item) => {
@@ -59,30 +60,43 @@ const ChordDisplay = ({ location, match, ...props }) => {
       return "";
     });
   }
+
+
   // write what should be return when the component is initiate
   return (
-    
-      <div className="mp3card">    
-          <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-          <div className= "test">
-            <div className="music-info">
-              <MusicPlayer mode="vertical" playlist={selectedTrack} />
-            </div>
-          </div>
-            {chords!==null  && chords.length> 0 && chords.map((item) => 
-            
-              <div className="scrollmenu">
-                <p>{item}</p>
-              </div>  
-              
-            )}
-            {demoChords!==null  && demoChords.length> 0 && demoChords.map((item) => 
-              <div className="scrollmenu">
-                <p>{item}</p>
-              </div>     
-            )}  
+    <div className="mp3card">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></meta>
+      <div className="test">
+        <div className="music-info">
+          <MusicPlayer mode="vertical" playlist={selectedTrack} />
+        </div>
       </div>
-   
+
+      {chords !== null && !isEmpty(chords) ? (
+        chords.map((item) => (
+          <div className="scrollmenu">
+            <p>{item}</p>
+          </div>
+        ))
+      ) : (
+        <ReactBootStrap.Spinner className="spinner" animation="border" />
+      )}
+
+
+      {demoChords !== null && !isEmpty(demoChords) ? (
+        demoChords.map((item) => (
+          <div className="scrollmenu">
+            <p>{item}</p>
+          </div>
+        ))
+      ) : (
+        <ReactBootStrap.Spinner className="spinner" animation="border" />
+      )} 
+
+    </div>
   );
 };
 export default ChordDisplay;

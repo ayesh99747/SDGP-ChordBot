@@ -30,7 +30,7 @@ db.initialize(
     });
 
     //find if username already exists
-    router.post("/isUsernamePresent", async (request, response) => {
+    router.post("/isUsernamePresent", (request, response) => {
       const postUsername = request.body.username;
 
       dbCollection.findOne({ username: postUsername }, (error, result) => {
@@ -44,7 +44,7 @@ db.initialize(
     });
 
     //validate if username and password exist
-    router.post("/validateLogin", async (request, response) => {
+    router.post("/validateLogin", (request, response) => {
       const postUsername = request.body.username;
       const postPassword = request.body.password;
 

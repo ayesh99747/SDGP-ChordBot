@@ -4,14 +4,14 @@ var fileUpload = require("express-fileupload");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 
-//Define Application object
-var app = express();
-app.use(cors);
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-app.use(express.static("uploads"));
+//Define serverlication object
+var server = express();
+server.use(cors());
+server.use(bodyParser.json({ limit: "50mb" }));
+server.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+server.use(express.static("uploads"));
 
-app.use(
+server.use(
   fileUpload({
     createParentPath: true,
     limits: {
@@ -20,24 +20,24 @@ app.use(
   })
 );
 
-app.get("/", (request, response) => {
+server.get("/", (request, response) => {
   response.send("Welcome to chordbot server!");
 });
 
 //Set up the Routes in the Controller
 var upload = require("./src/routes/fileUploadAPI.js");
-app.use("/files", upload);
+server.use("/files", upload);
 
 var demoSongs = require("./src/routes/demoSongsAPI.js");
-app.use("/demoSongs", demoSongs);
+server.use("/demoSongs", demoSongs);
 
 var playlistSongs = require("./src/routes/playlistSongsAPI.js");
-app.use("/playlistSongs", playlistSongs);
+server.use("/playlistSongs", playlistSongs);
 
 var users = require("./src/routes/userAPI.js");
-app.use("/users", users);
+server.use("/users", users);
 
-const PORT = 8000 || process.env.PORT;
-app.listen(PORT, function () {
-  console.log(`App started on port - ${PORT}`);
+const PORT=process.env.PORT || 8000
+server.listen(PORT, () => {
+  console.log("Server running at port - "+PORT);
 });

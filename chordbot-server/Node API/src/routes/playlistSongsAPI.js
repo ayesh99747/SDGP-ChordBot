@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffmpeg = require('fluent-ffmpeg');
+const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
+const ffmpeg = require("fluent-ffmpeg");
 ffmpeg.setFfmpegPath(ffmpegPath);
 var fs = require("fs");
 const db = require("./db.js");
@@ -12,7 +12,7 @@ db.initialize(
   dbName,
   collectionName,
   function (dbCollection) {
-    // get all the songs from the database
+    // return list of playlist songs
     router.get("/getSongs", (request, response) => {
       dbCollection.find().toArray((error, result) => {
         if (error) throw error;
@@ -27,6 +27,7 @@ db.initialize(
       dbCollection.findOne({ songID: songid }, (error, result) => {
         if (error) throw error;
 
+        //If a song does not exist
         if (result == null) {
           response.status(404).send({
             status: false,
@@ -38,6 +39,7 @@ db.initialize(
           var newFileLocation =
             mp3Location.substring(0, mp3Location.length - 3) + "wav";
 
+          //The follosing lines of code convert the mp3 to wav
           ffmpeg(mp3Location)
             .toFormat("wav")
             .on("error", (err) => {
@@ -47,16 +49,13 @@ db.initialize(
                 message: "Error in converting song!",
               });
             })
-            .on("progress", (progress) => {
-              //console.log(JSON.stringify(progress));
-            })
-            .on("end", () => {
-              //console.log("Processing finished !");
-            })
-            .save(newFileLocation); //path where you want to save your file
+            .on("progress", (progress) => {})
+            .on("end", () => {})
+            .save(newFileLocation);
 
           var fileLocation = newFileLocation;
 
+          //Here the python script is executed and the chords are extracted
           var spawn = require("child_process").spawn;
           var process = spawn("python", [
             "./python_files/Chord_Sequencer.py",

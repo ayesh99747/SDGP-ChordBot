@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffmpeg = require('fluent-ffmpeg');
+const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
+const ffmpeg = require("fluent-ffmpeg");
 ffmpeg.setFfmpegPath(ffmpegPath);
 
 const fs = require("fs");
@@ -15,8 +15,8 @@ db.initialize(
   function (dbCollection) {
     // successCallback
 
+    // return list of demo songs
     router.get("/getSongs", (request, response) => {
-      // return updated list
       dbCollection.find().toArray((error, result) => {
         if (error) throw error;
         response.status(200).json(result);
@@ -29,6 +29,7 @@ db.initialize(
       dbCollection.findOne({ songID: songid }, (error, result) => {
         if (error) throw error;
 
+        //If a song does not exist
         if (result == null) {
           response.status(404).send({
             status: false,
@@ -40,25 +41,24 @@ db.initialize(
           var newFileLocation =
             mp3Location.substring(0, mp3Location.length - 3) + "wav";
 
+          //The following lines of code convert the mp3 to wav
           ffmpeg(mp3Location)
             .toFormat("wav")
             .on("error", (err) => {
               console.log("An error occurred: " + err.message);
+              //If the server was unable to convert the song
               response.status(500).send({
                 status: false,
                 message: "Error in converting song!",
               });
             })
-            .on("progress", (progress) => {
-              //console.log(JSON.stringify(progress));
-            })
-            .on("end", () => {
-              //console.log("Processing finished !");
-            })
-            .save(newFileLocation); //path where you want to save your file
+            .on("progress", (progress) => {})
+            .on("end", () => {})
+            .save(newFileLocation);
 
           var fileLocation = newFileLocation;
 
+          //Here the python script is executed and the chords are extracted
           var spawn = require("child_process").spawn;
           var process = spawn("python", [
             "./python_files/Chord_Sequencer.py",
@@ -70,8 +70,7 @@ db.initialize(
             var array = str.split(" ");
             try {
               fs.unlinkSync(fileLocation);
-            } catch (err) {
-            }
+            } catch (err) {}
             response.status(200).send({
               status: true,
               message: array,

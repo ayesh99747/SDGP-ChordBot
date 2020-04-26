@@ -23,7 +23,7 @@ db.initialize(
         (error, result) => {
           if (error) throw error;
           response.status(200).json({
-            message : "User created successfully!",
+            message: "User created successfully!",
           });
         }
       );
@@ -54,11 +54,11 @@ db.initialize(
           if (error) throw error;
           if (result != null) {
             response.status(200).json({
-              message : "Login successful!",
+              message: "Login successful!",
             });
           } else {
             response.status(404).json({
-              message : "User not found!",
+              message: "User not found!",
             });
           }
         }

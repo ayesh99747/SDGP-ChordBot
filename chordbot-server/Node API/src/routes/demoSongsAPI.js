@@ -19,7 +19,13 @@ db.initialize(
     router.get("/getSongs", (request, response) => {
       dbCollection.find().toArray((error, result) => {
         if (error) throw error;
-        response.status(200).json(result);
+        if (result == null) {
+          response.status(404).send({
+            message: "Database empty!",
+          });
+        }else{
+          response.status(200).json(result);
+        }
       });
     });
 

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/12b21d9f-a3d5-4d8a-af86-f616c75d76e8/resourceGroups/ChordBot-Server/providers/Microsoft.Web/sites/ChordBot-Server",
+    "appService.deploySubpath": ""
+}

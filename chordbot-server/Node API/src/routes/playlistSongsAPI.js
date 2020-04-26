@@ -4,7 +4,7 @@ const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 const ffmpeg = require("fluent-ffmpeg");
 ffmpeg.setFfmpegPath(ffmpegPath);
 var fs = require("fs");
-const db = require("./db.js");
+const db = require("../database/db.js");
 const dbName = "Chordbot-Database";
 const collectionName = "PlaylistSongs";
 

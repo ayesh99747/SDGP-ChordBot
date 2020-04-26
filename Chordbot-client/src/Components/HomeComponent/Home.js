@@ -53,7 +53,7 @@ const Home = (props) => {
               </div>
               <div className="song-desc">
                 <h2>Playlist</h2>
-                {!isEmpty(playListSongs)//validate songs are not empty
+                {!isEmpty(playListSongs)//validate songs are not empty, function from loadash library
                   ? playListSongs.map((item) => {
                       //we gonna map the card blocks it is like a for loop
                       return (

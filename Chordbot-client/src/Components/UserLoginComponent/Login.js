@@ -10,7 +10,7 @@ const Login = propps => {
         const [IsCredentialmatch,setIsCredentialmatch]=useState(false)//to show an error message
         const login=()=>{//method check pw and username
         if(usernameTwo===username && passwordTwo===password){
-            propps.history.push("/Home")//route change when no event
+            propps.history.push('/')//route change when no event
         }else
             setIsCredentialmatch(true)//if the user name or password doen not match assign to true
         } 

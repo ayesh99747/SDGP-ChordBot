@@ -5,9 +5,6 @@ import soundfile as sf
 filename = input("Enter name of file to get the graph : ")
 data, fs = sf.read(filename) # read sound file 
 
-# Start = 0 
-# End = len(data)/fs
-# Samples to generate = num=len(y)
 time=np.linspace(0, len(data)/fs, num=len(y)) # calculate time
 
 plot.figure(1) # create a figure object

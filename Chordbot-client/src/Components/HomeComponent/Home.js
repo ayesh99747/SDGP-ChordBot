@@ -5,94 +5,18 @@ import {
   Row,
   Col,
   Image,
-  Button,
   Card,
   ListGroup,
   Container,
 } from "react-bootstrap";
-import axios from "axios";
+import axios from "axios";//connecting apis using axios library
 import "./Home.css";
 const Home = (props) => {
   //create home component
-  /* const songlist = [
-    {
-      songid: "5e975ac65be3535ce474e007",
-      songName: "Johnny B. Goode",
-      imageName: "src/assets/images/jbgoode.jpg", 
-      artist: "Chuck Berry",
-      genre: "Rock",
-    },
-    {
-      songid: "5e975ac65be3535ce474e008",
-      songName: "Blowin In The Wind",
-      imageName: "src/assets/images/inTheWind.jpg",
-      artist: "Bob Dylan",
-      genre: "Folk/Pop",
-    },
-    {
-      songid: "5e975ac65be3535ce474e009",
-      songName: "Stairway To Heaven",
-      imageName: "src/assets/images/stairwayToHeaven.jpg",
-      artist: "Led Zeppelin",
-      genre: "Rock/Hard Rock",
-    },
-    {
-      songid: "5e975ac65be3535ce474e00a",
-      songName: "All Along The Watchtower",
-      imageName: "src/assets/images/watchtowerHendrix.jpg",
-      artist: "Jimi Hendrix",
-      genre: "Classic Rock/Psychedelic Rock",
-    },
-    {
-      songid: "5e975ac65be3535ce474e00b",
-      songName: "What A Wonderful World",
-      imageName: "src/assets/images/wonderfulWorld.jpg",
-      artist: "Louis Armstrong",
-      genre: "Pop",
-    },
-  ]; */
-  /* const songDemolist = [
-    {
-      songid: "5e975ac35be3535ce474e002",
-      songName: "Imagine",
-      imageName: "src/assets/images/imagine.jpg",
-      artist: "John Lennon",
-      genre: "Rock/Pop",
-    },
-    {
-      songid: "5e975ac55be3535ce474e003",
-      songName: "Hey Jude",
-      imageName: "src/assets/images/heyJude.jpg",
-      artist: "The Beatles",
-      genre: "Country Music",
-    },
-    {
-      songid: "5e975ac55be3535ce474e004",
-      songName: "(I Can’t Get No) Satisfaction",
-      imageName: "src/assets/images/satisfaction.jpg",
-      artist: "The Rolling Stones",
-      genre: "Rock",
-    },
-    {
-      songid: "5e975ac55be3535ce474e005",
-      songName: "Good Vibrations",
-      imageName: "src/assets/images/goodVibrations.jpg",
-      artist: "The Beach Boys",
-      genre: "Pop",
-    },
-    {
-      songid: "5e975ac65be3535ce474e006",
-      songName: "Smells Like Teen Spirit",
-      imageName: "src/assets/images/teenSpirit.jpg",
-      artist: "Nirvana",
-      genre: "Rock/Alternative",
-    },
-  ]; */
-
   const [playListSongs, setPlayListsonglist] = useState([]);
   const [demoSongs, setDemoSongs] = useState([]);
 
-  useEffect(() => { //calling functions
+  useEffect(() => { //calling functions for APIs
     fetchPlayListSongs();
     fetchDemoSongs();
   }, []);
@@ -113,10 +37,10 @@ const Home = (props) => {
     <div>
       <div id="background">
         <div id="background-overlay">
-          <div class="container-fluid">
-            <div class="song-card">
-              <div class="song-cont">
-                <img
+          <div className="container-fluid">
+            <div className="song-card">
+              <div className="song-cont">
+                <img alt="img"
                   src="https://chordify.net/img/channels/getting-started.jpg"
                   frameborder="0"
                 />
@@ -127,9 +51,9 @@ const Home = (props) => {
                   advance your skills.
                 </p>
               </div>
-              <div class="song-desc">
+              <div className="song-desc">
                 <h2>Playlist</h2>
-                {!isEmpty(playListSongs)//validate songs are not empty
+                {!isEmpty(playListSongs)//validate songs are not empty, function from loadash library
                   ? playListSongs.map((item) => {
                       //we gonna map the card blocks it is like a for loop
                       return (
@@ -138,20 +62,23 @@ const Home = (props) => {
                           style={{ width: "100%" }}
                           onClick={() =>
                             props.history.push(
-                              `/ChordDisplay/?id=${item.songID}`
+                              `/ChordDisplay/?${queryString.stringify({
+                                id: item.songID,
+                                type: 'playlist'
+                              })}`
                             )
                           }
                         >
                           <ListGroup variant="flush">
                             <Container>
                               <Row md={4}>
-                                <Col xs={6} md={4}>
+                                <Col xs={2} md={2}>
                                   {" "}
-                                  <Image src={item.imageName} rounded />
+                                <Image src={"https://www.pinclipart.com/picdir/middle/493-4936384_free-png-colorful-music-note-png-png-image.png"}style={{height:"60px",width:"60px"}} rounded />
                                 </Col>
-                                <Col>{item.songName}</Col>
-                                <Col>{item.artist}</Col>
-                                <Col>{item.genre}</Col>
+                                <Col xs={4} md={4}>{item.songName}</Col>
+                                <Col >{item.artist}</Col>
+                                <Col xs={4} md={4}>{item.genre}</Col>
                               </Row>
                             </Container>
                           </ListGroup>
@@ -163,15 +90,15 @@ const Home = (props) => {
             </div>
           </div>
 
-          <div class="container-fluid-two">
-            <div class="song-card">
-              <div class="song-desc">
+          <div className="container-fluid-two">
+            <div className="song-card">
+              <div className="song-desc">
                 <h2>Demo Songs</h2>
-                {!isEmpty(playListSongs)
+                {!isEmpty(demoSongs)
                   ? demoSongs.map((item) => {
                       //we gonna map the card blocks it is like a for loop
                       return (
-                        //here we call the song by id when user clicks on the url it will get the song by songid
+                        //here we call the song by id when user clicks on the url it will get the demo song by songid
                         <Card
                           style={{ width: "100%" }}
                           onClick={() =>
@@ -185,13 +112,15 @@ const Home = (props) => {
                           <ListGroup variant="flush">
                             <Container>
                               <Row md={4}>
-                                <Col xs={6} md={4}>
+                                <Col xs={2} md={2}>
                                   {" "}
-                                  <Image src={item.imageName} rounded />
+                                  <Image src={"https://www.pinclipart.com/picdir/middle/493-4936384_free-png-colorful-music-note-png-png-image.png"}
+                                  style={{height:"60px",width:"60px"}} rounded 
+                                  />
                                 </Col>
-                                <Col>{item.songName}</Col>
+                                <Col xs={3} md={3}>{item.songName}</Col>
                                 <Col>{item.artist}</Col>
-                                <Col>{item.genre}</Col>
+                                <Col >{item.genre}</Col>
                               </Row>
                             </Container>
                           </ListGroup>
@@ -200,9 +129,9 @@ const Home = (props) => {
                     })
                   : ""}
               </div>
-              <div class="song-cont">
-                <img
-                  src="https://learnenglishteens.britishcouncil.org/sites/teens/files/field/image/istock_000016090616small_0.jpg"
+              <div className="song-cont">
+                <img  alt="img"
+                src="https://learnenglishteens.britishcouncil.org/sites/teens/files/field/image/istock_000016090616small_0.jpg"
                   frameborder="0"
                 />
                 <p>

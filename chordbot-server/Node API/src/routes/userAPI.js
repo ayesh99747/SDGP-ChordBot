@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const db = require("./db.js");
+const db = require("../database/db.js");
 const dbName = "Chordbot-Database";
 const collectionName = "Users";
 
@@ -23,14 +23,14 @@ db.initialize(
         (error, result) => {
           if (error) throw error;
           response.status(200).json({
-            message : "User created successfully!",
+            message: "User created successfully!",
           });
         }
       );
     });
 
     //find if username already exists
-    router.post("/isUsernamePresent", async (request, response) => {
+    router.post("/isUsernamePresent", (request, response) => {
       const postUsername = request.body.username;
 
       dbCollection.findOne({ username: postUsername }, (error, result) => {
@@ -44,7 +44,7 @@ db.initialize(
     });
 
     //validate if username and password exist
-    router.post("/validateLogin", async (request, response) => {
+    router.post("/validateLogin", (request, response) => {
       const postUsername = request.body.username;
       const postPassword = request.body.password;
 
@@ -54,11 +54,11 @@ db.initialize(
           if (error) throw error;
           if (result != null) {
             response.status(200).json({
-              message : "Login successful!",
+              message: "Login successful!",
             });
           } else {
             response.status(404).json({
-              message : "User not found!",
+              message: "User not found!",
             });
           }
         }

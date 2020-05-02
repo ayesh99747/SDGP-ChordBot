@@ -2,12 +2,9 @@ import numpy as np
 import scipy.io.wavfile
 from os import listdir
 from os.path import isfile, join
-from utilities import convStoM
 
 def pcp(path) :
     fs,y = scipy.io.wavfile.read(path) # read the wav file
-    if len(y.shape) == 2 :
-        y = convStoM(y)
     n = np.size(y)
     k = int(n/2)
     y = (np.square(abs(np.fft.rfft(y))[:k]))

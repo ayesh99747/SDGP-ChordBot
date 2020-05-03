@@ -14,22 +14,22 @@ Chord_Name = { 1 : 'A', 2 : 'Am', 3 : 'Bm', 4 : 'C', 5 : 'D',
           6 : 'Dm', 7 : 'E', 8 : 'Em', 9 : 'F', 10 : 'G' }
 
 
-def FunctionPCP(y, fs):
-    num = numpy.size(y)
-    a = int(num / 2)
-    y = (numpy.square(abs(numpy.fft.rfft(y))[:a]))
-    pcp = numpy.zeros(12, dtype=float)
-    fref = 130.8
-    M = numpy.zeros(a)
-    M[0] = -1
-    for l in range(1, a):
-        M[l] = round(12 * numpy.log2((fs / fref) * (l / num))) % 12
-    for i in range(0, 12):
-        pcp[i] = numpy.dot(y, (M == (i * numpy.ones(a))))
-    if sum(pcp) == 0:
+def FunctionPCP(data, sampleRate):
+    newData = numpy.size(data)
+    half = int(newData / 2)
+    data = (numpy.square(abs(numpy.fft.rfft(data))[:half]))	#Representing using DFT
+    pcpArray = numpy.zeros(12, dtype=float)
+    const = 130.8
+    Mo = numpy.zeros(half)
+    Mo[0] = -1
+    for count in range(1, half):
+        Mo[count] = round(12 * numpy.log2((sampleRate / const) * (count / newData))) % 12
+    for tones in range(0, 12):						#Fitting to 12 tones
+        pcpArray[tones] = numpy.dot(data, (Mo == (tones * numpy.ones(half))))
+    if sum(pcpArray) == 0:					#getting pcp values
         return numpy.zeros(12, dtype=float)
-    pcp = pcp / sum(pcp)
-    return pcp
+    pcpArray = pcpArray / sum(pcpArray)
+    return pcpArray
 		  
 def cropFile(songFile, beginning, duration, croppedFile):		#gets a required duration of the file, used in extractChords function
 

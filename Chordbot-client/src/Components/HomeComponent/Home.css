@@ -100,10 +100,19 @@ p{
     padding: 5px 1%;
     float: left;
     margin-left: 4%;
+}
+.img-res{
+    width: 100%;
+    height: auto;
     
 }
-
-
-
+.para-res{
+    height: 90px;
+}
+.music-cards{
+    
+}
+    
+  
 
 

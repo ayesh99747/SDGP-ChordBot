@@ -1,38 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; //how it would be converted to a functional component with hooks
 import queryString from "query-string";
-import isEmpty from "lodash/isEmpty";
-import {
-  Row,
-  Col,
-  Image,
-  Card,
-  ListGroup,
-  Container,
-} from "react-bootstrap";
-import axios from "axios";//connecting apis using axios library
+import isEmpty from "lodash/isEmpty"; //lodash library
+import { Row, Col, Image, Card, ListGroup, Container } from "react-bootstrap";
+import axios from "axios"; //connecting apis using axios library
 import "./Home.css";
 const Home = (props) => {
-  //create home component
-  const [playListSongs, setPlayListsonglist] = useState([]);
-  const [demoSongs, setDemoSongs] = useState([]);
-
-  useEffect(() => { //calling functions for APIs
+  //create home functional component
+  const [playListSongs, setPlayListsonglist] = useState([]); //function to update playlist songs and store it in an array
+  const [demoSongs, setDemoSongs] = useState([]); //function to update demo songs and store it in an array
+  useEffect(() => {
+    //calling functions of APIs
     fetchPlayListSongs();
     fetchDemoSongs();
   }, []);
-
   async function fetchPlayListSongs() {
-    const apiURL = "http://localhost:8000/playlistSongs/getSongs";//url to get the playlist song detail
-    const response = await axios.get(apiURL);//append details by getting from the data list
+    const apiURL = "http://localhost:8000/playlistSongs/getSongs"; //url to get the playlist song detail
+    const response = await axios.get(apiURL); //append details by getting from the data list
     setPlayListsonglist(response.data);
   }
-
   async function fetchDemoSongs() {
     const apiURL = "http://localhost:8000/demoSongs/getSongs";
     const response = await axios.get(apiURL);
     setDemoSongs(response.data);
   }
-
   return (
     <div>
       <div id="background">
@@ -40,11 +30,13 @@ const Home = (props) => {
           <div className="container-fluid">
             <div className="song-card">
               <div className="song-cont">
-                <img alt="img"
-                  src="https://chordify.net/img/channels/getting-started.jpg"
+                <img
+                  className="img-res"
+                  alt="img"
+                  src="https://ak3.picdn.net/shutterstock/videos/18090553/thumb/6.jpg"
                   frameborder="0"
                 />
-                <p>
+                <p className="para-res">
                   Are you a novice player? Pick one of these easy-to-play songs
                   and start jamming! These songs are hand picked to start your
                   journey as a guitar player.Get used to new chords and riffs to
@@ -53,7 +45,7 @@ const Home = (props) => {
               </div>
               <div className="song-desc">
                 <h2>Playlist</h2>
-                {!isEmpty(playListSongs)//validate songs are not empty, function from loadash library
+                {!isEmpty(playListSongs) //Check if value is not empty.
                   ? playListSongs.map((item) => {
                       //we gonna map the card blocks it is like a for loop
                       return (
@@ -61,10 +53,10 @@ const Home = (props) => {
                         <Card
                           style={{ width: "100%" }}
                           onClick={() =>
-                            props.history.push(
-                              `/ChordDisplay/?${queryString.stringify({
-                                id: item.songID,
-                                type: 'playlist'
+                            props.history.push(//redirecting the user to another route chord display page
+                              `/ChordDisplay/?${queryString.stringify({ //Serialize an object to a query string
+                                id: item.songID,//assign song id and song type to it
+                                type: "playlist",
                               })}`
                             )
                           }
@@ -73,19 +65,28 @@ const Home = (props) => {
                             <Container>
                               <Row md={4}>
                                 <Col xs={2} md={2}>
-                                  {" "}
-                                <Image src={"https://www.pinclipart.com/picdir/middle/493-4936384_free-png-colorful-music-note-png-png-image.png"}style={{height:"60px",width:"60px"}} rounded />
+                                  <Image
+                                    src={
+                                      "https://www.pinclipart.com/picdir/middle/493-4936384_free-png-colorful-music-note-png-png-image.png"
+                                    }
+                                    style={{ height: "60px", width: "60px" }}
+                                    rounded
+                                  />
                                 </Col>
-                                <Col xs={4} md={4}>{item.songName}</Col>
-                                <Col >{item.artist}</Col>
-                                <Col xs={4} md={4}>{item.genre}</Col>
+                                <Col xs={4} md={4}>
+                                  {item.songName}
+                                </Col>
+                                <Col>{item.artist}</Col>
+                                <Col xs={4} md={4}>
+                                  {item.genre}
+                                </Col>
                               </Row>
                             </Container>
                           </ListGroup>
                         </Card>
                       );
-                    })
-                  : ""}
+                    }) 
+                  : "Cannot Load playlist songs!!"}
               </div>
             </div>
           </div>
@@ -109,32 +110,39 @@ const Home = (props) => {
                             )
                           }
                         >
-                          <ListGroup variant="flush">
+                          <ListGroup variant="flush" >
                             <Container>
-                              <Row md={4}>
+                              <Row md={4} className="music-cards">
                                 <Col xs={2} md={2}>
-                                  {" "}
-                                  <Image src={"https://www.pinclipart.com/picdir/middle/493-4936384_free-png-colorful-music-note-png-png-image.png"}
-                                  style={{height:"60px",width:"60px"}} rounded 
+                                  <Image
+                                    src={
+                                      "https://www.pinclipart.com/picdir/middle/493-4936384_free-png-colorful-music-note-png-png-image.png"
+                                    }
+                                    style={{ height: "60px", width: "60px" }}
+                                    rounded
                                   />
                                 </Col>
-                                <Col xs={3} md={3}>{item.songName}</Col>
+                                <Col xs={3} md={3}>
+                                  {item.songName}
+                                </Col>
                                 <Col>{item.artist}</Col>
-                                <Col >{item.genre}</Col>
+                                <Col>{item.genre}</Col>
                               </Row>
                             </Container>
                           </ListGroup>
                         </Card>
                       );
                     })
-                  : ""}
+                  : "Cannot Load demo songs!!"}
               </div>
               <div className="song-cont">
-                <img  alt="img"
-                src="https://learnenglishteens.britishcouncil.org/sites/teens/files/field/image/istock_000016090616small_0.jpg"
+                <img
+                  className="img-res"
+                  alt="img"
+                  src="https://rebuilttrannyrecords.com/wp-content/uploads/2019/09/MusicCritic.png"
                   frameborder="0"
                 />
-                <p>
+                <p  className="para-res">
                   When the world is struggling, there is always the love of
                   music to lift our spirits and to keep us connected and
                   relaxed. Here are some tracks to enhance our sense of

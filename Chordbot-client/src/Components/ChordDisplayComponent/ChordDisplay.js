@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ChordDisplay.css";
-import MusicPlayer from "react-responsive-music-player";
+import MusicPlayer from "react-responsive-music-player";//music player lib 
 import playlist from "../../services/shapes/audio/playlist";
 import demoSongs from "../../services/shapes/audio/demoSongs";
 import queryString from "query-string";
@@ -11,7 +11,7 @@ const ChordDisplay = ({ location, match, ...props }) => {
   //here we create Chord display as a functional component
   const [chords, setchords] = useState(null);
   const [demoChords, setdemoChords] = useState(null);
-  const [selectedTrack, setSelectedtrack] = useState([
+  const [selectedTrack, setSelectedtrack] = useState([//functions to update selected song track and store data 
     {
       url: "",
       cover: "",
@@ -20,9 +20,8 @@ const ChordDisplay = ({ location, match, ...props }) => {
     },
   ]);
   useEffect(() => {
-    const search = location ? queryString.parse(location.search) : {}; 
-    if (search.type === "playlist") {
-      //check by the song type and run the function
+    const search = location ? queryString.parse(location.search) : {}; //ternary to grab song details from url
+    if (search.type === "playlist") { //condition to check by the song type and run the function
       fetchsongsById(search.id);
       playableSong(playlist, search);
     } else {
@@ -32,18 +31,20 @@ const ChordDisplay = ({ location, match, ...props }) => {
   }, [location.pathname]);
 
   function fetchsongsById(url) {
-    const apiURL = `http://localhost:8000/playlistSongs/getChords/${url}`;
+    const apiURL = `http://localhost:8000/playlistSongs/getChords/${url}`;//append id
     axios.get(apiURL).then((res) => {
       setchords(res.data.message);
     });
   }
+
   function fetchdemosongsById(urlDemo) {
     const apiURLDemo = `http://localhost:8000/demoSongs/getChords/${urlDemo}`;
     axios.get(apiURLDemo).then((res) => {
-      console.log(res.data);
+      console.log(res.data);//send data to the back end and ask data
       setdemoChords(res.data.message);
     });
   }
+
   // New Fuction for Playing the song
   function playableSong(playlist, search) {
     playlist.map((item) => {
@@ -61,7 +62,6 @@ const ChordDisplay = ({ location, match, ...props }) => {
     });
   }
 
-
   // write what should be return when the component is initiate
   return (
     <div className="mp3card">
@@ -74,28 +74,25 @@ const ChordDisplay = ({ location, match, ...props }) => {
           <MusicPlayer mode="vertical" playlist={selectedTrack} />
         </div>
       </div>
-
-      {chords !== null && !isEmpty(chords) ? (
+      {chords !== null && !isEmpty(chords) ? ( //use isEmpty to fetch the data is loading and display them
         chords.map((item) => (
           <div className="scrollmenu">
             <p>{item}</p>
           </div>
         ))
       ) : (
-        <ReactBootStrap.Spinner className="spinner" animation="border" />
+        <ReactBootStrap.Spinner className="spinner" animation="border" />//If data is still loading display a spinner
       )}
 
-
-      {demoChords !== null && !isEmpty(demoChords) ? (
+      {demoChords !== null && !isEmpty(demoChords) ? ( //use isEmpty to fetch the data is loading and display them
         demoChords.map((item) => (
           <div className="scrollmenu">
             <p>{item}</p>
           </div>
         ))
       ) : (
-        <ReactBootStrap.Spinner className="spinner" animation="border" />
-      )} 
-
+        <ReactBootStrap.Spinner className="spinner" animation="border" />//If data is still loading display a spinner
+      )}
     </div>
   );
 };

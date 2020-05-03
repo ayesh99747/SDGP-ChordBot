@@ -76,7 +76,9 @@ db.initialize(
             var array = str.split(" ");
             try {
               fs.unlinkSync(fileLocation);
-            } catch (err) {}
+            } catch (err) {
+              console.log(err);
+            }
             response.status(200).send({
               status: true,
               message: array,

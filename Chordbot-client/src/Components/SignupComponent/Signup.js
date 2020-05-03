@@ -1,11 +1,34 @@
 import React,{useState} from 'react';
 import './Signup.css';
+import axios from 'axios';
 import{Button,Form,FormGroup,Label,Input} from 'react-bootstrap';
 const Signup = propps => {
-        const [name,setname]=useState("Harry")
-        const [username,setusername]=useState("black")
-        const [email,setemail]=useState("harry@gmail.com")
-        const [password,setpassword]=useState("12345")
+        const [state, setState] = useState({
+            name: 'Harry',
+            userName:'black',
+            email: 'harry@gmail.com',
+            password: '12345'
+        })
+
+        const handleChange = e => {
+            const { name, value } = e.target
+            setState({ ...state, [name]: value })
+        }
+        
+        const handleSubmit = () => {
+            axios.post('http://localhost:8000/users/addUser', {
+                customerName: state.name, 
+                emailAddress: state.email, 
+                username: state.userName,
+                password: state.password
+            })
+            .then(res => alert(res.data.message))
+            .catch(() => alert('Error'))
+        }
+
+        
+        
+        
         return(
         <div className="pic">
         <div className="pic-overlay">
@@ -15,18 +38,19 @@ const Signup = propps => {
                     <span  className="login-name">Sign up</span>
                 </h1>
                 <FormGroup>
-                    <input type="name" placeholder="Name"/>
+                    <input name="name" type="name" placeholder="name" onChange={handleChange}/>
+
                 </FormGroup>
                 <FormGroup>
-                    <input type="username" placeholder="Username"/>
+                    <input name="userName" type="username" placeholder="Username" onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <input type="email" placeholder="Email"/>
+                    <input name="email" type="email" placeholder="Email" onChange={handleChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <input type="password" placeholder="Password"/>
+                    <input name="password" type="password" placeholder="Password" onChange={handleChange}/>
                 </FormGroup>
-                <Button id="btn" className="btn-lg btn-dark btn-block" >Sign up</Button>
+                <Button id="btn" className="btn-lg btn-dark btn-block" onClick={handleSubmit}>Sign up</Button>
                 
             </form>
         </div>

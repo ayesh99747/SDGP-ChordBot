@@ -2,18 +2,34 @@ import React,{useState} from 'react';
 import './Login.css';
 import{Button,Form,FormGroup,Label,Input} from 'react-bootstrap';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
+
 const Login = propps => {
         const [username,setusername]=useState("Harry")
         const [password,setpassword]=useState("1234")
         const [usernameTwo,setusernameTwo]=useState(null)
         const [passwordTwo,setpasswordTwo]=useState(null)
         const [IsCredentialmatch,setIsCredentialmatch]=useState(false)//to show an error message
+<<<<<<< HEAD
         const login=()=>{//method check pw and username
         if(usernameTwo===username && passwordTwo===password){
             propps.history.push("/Home")//route change when no event
         }else
             setIsCredentialmatch(true)//if the user name or password doen not match assign to true
         } 
+=======
+
+        const login = () => {
+                axios.post('/users/validateLogin', { username: usernameTwo, password: passwordTwo })
+                    .then(res => {
+                        window.location.href = '/'
+                        console.log(res);
+                        console.log(res.data);
+                    })
+                    .catch(() => (setIsCredentialmatch(true)))
+        }
+
+>>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
         
         return(
         <div className="pic">

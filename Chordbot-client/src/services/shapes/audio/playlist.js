@@ -41,7 +41,7 @@ export default [
     songID: "5",
     url: `${
       window.location.origin || process.env.PUBLIC_URL
-    }/assets/mp3s/watchtowerHendrix.mp3`,
+    }/assets/mp3s/wonderfulWorld.mp3`,
     cover: "https://a.allegroimg.com/s1024/0c392d/dc25ac234fc09371ba4de3a228dc",
     title: "What A Wonderful World",
     artist: ["Louis Armstrong"],

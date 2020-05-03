@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ChordDisplay.css";
-<<<<<<< HEAD
-import MusicPlayer from "react-responsive-music-player";//music player lib 
-=======
 import MusicPlayer from "react-responsive-music-player"; //music player lib
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
 import playlist from "../../services/shapes/audio/playlist";
 import demoSongs from "../../services/shapes/audio/demoSongs";
 import queryString from "query-string";
@@ -15,12 +11,8 @@ const ChordDisplay = ({ location, match, ...props }) => {
   //here we create Chord display as a functional component
   const [chords, setchords] = useState(null);
   const [demoChords, setdemoChords] = useState(null);
-<<<<<<< HEAD
-  const [selectedTrack, setSelectedtrack] = useState([//functions to update selected song track and store data 
-=======
   const [selectedTrack, setSelectedtrack] = useState([
     //functions to update selected song track and store data
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
     {
       url: "",
       cover: "",
@@ -30,12 +22,8 @@ const ChordDisplay = ({ location, match, ...props }) => {
   ]);
   useEffect(() => {
     const search = location ? queryString.parse(location.search) : {}; //ternary to grab song details from url
-<<<<<<< HEAD
-    if (search.type === "playlist") { //condition to check by the song type and run the function
-=======
     if (search.type === "playlist") {
       //condition to check by the song type and run the function
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
       fetchsongsById(search.id);
       playableSong(playlist, search);
     } else {
@@ -95,11 +83,7 @@ const ChordDisplay = ({ location, match, ...props }) => {
           </div>
         ))
       ) : (
-<<<<<<< HEAD
-        <ReactBootStrap.Spinner className="spinner" animation="border" />//If data is still loading display a spinner
-=======
         <ReactBootStrap.Spinner className="spinner" animation="border" /> //If data is still loading display a spinner
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
       )}
 
       {demoChords !== null && !isEmpty(demoChords) ? ( //use isEmpty to fetch the data is loading and display them
@@ -109,11 +93,7 @@ const ChordDisplay = ({ location, match, ...props }) => {
           </div>
         ))
       ) : (
-<<<<<<< HEAD
-        <ReactBootStrap.Spinner className="spinner" animation="border" />//If data is still loading display a spinner
-=======
         <ReactBootStrap.Spinner className="spinner" animation="border" /> //If data is still loading display a spinner
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
       )}
     </div>
   );

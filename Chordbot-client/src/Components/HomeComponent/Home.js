@@ -31,14 +31,8 @@ const Home = (props) => {
             <div className="song-card">
               <div className="song-cont">
                 <img
-<<<<<<< HEAD
-                  className="img-res"
-                  alt="img"
-                  src="https://ak3.picdn.net/shutterstock/videos/18090553/thumb/6.jpg"
-=======
                   alt="img"
                   src="https://s3.envato.com/files/80988932-1e08-46dd-ba12-17feef229434/inline_image_preview.jpg"
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
                   frameborder="0"
                 />
                 <p className="para-res">
@@ -58,17 +52,11 @@ const Home = (props) => {
                         <Card
                           style={{ width: "100%" }}
                           onClick={() =>
-<<<<<<< HEAD
-                            props.history.push(//redirecting the user to another route chord display page
-                              `/ChordDisplay/?${queryString.stringify({ //Serialize an object to a query string
-                                id: item.songID,//assign song id and song type to it
-=======
                             props.history.push(
                               //redirecting the user to another route chord display page
                               `/ChordDisplay/?${queryString.stringify({
                                 //Serialize an object to a query string
                                 id: item.songID, //assign song id and song type to it
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
                                 type: "playlist",
                               })}`
                             )
@@ -98,11 +86,7 @@ const Home = (props) => {
                           </ListGroup>
                         </Card>
                       );
-<<<<<<< HEAD
-                    }) 
-=======
                     })
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
                   : "Cannot Load playlist songs!!"}
               </div>
             </div>
@@ -154,14 +138,8 @@ const Home = (props) => {
               </div>
               <div className="song-cont">
                 <img
-<<<<<<< HEAD
-                  className="img-res"
-                  alt="img"
-                  src="https://rebuilttrannyrecords.com/wp-content/uploads/2019/09/MusicCritic.png"
-=======
                   alt="img"
                   src="https://learnenglishteens.britishcouncil.org/sites/teens/files/field/image/istock_000016090616small_0.jpg"
->>>>>>> 73ee651d3627fef190e7dca1162c1f5c22447d36
                   frameborder="0"
                 />
                 <p  className="para-res">

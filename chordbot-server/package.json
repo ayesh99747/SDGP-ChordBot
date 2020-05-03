@@ -1,0 +1,30 @@
+{
+  "name": "chordbot-server",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "npm": "6.14.4",
+    "node": "12.16.2"
+  },
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "Ayeshmantha W",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "http": "0.0.1-security",
+    "mongodb": "^3.5.6"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3"
+  }
+}

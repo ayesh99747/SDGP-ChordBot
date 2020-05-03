@@ -63,31 +63,6 @@ def findAllChords(songFile, mlModelName):	#this function used to get all the cho
         os.remove("cropped.wav")
     return TotChordList
 
-
-def extractChords(mlModelName, songFile):		#this funtion gives the chord pattern of the wav file
-    wavFile = sound.SoundFile(songFile)			#by importing the file and the ML_model
-    SongtotalTime = len(wavFile) / wavFile.samplerate
-    count = 0
-    Tot_ChordPattern = []
-    while SongtotalTime > 0:
-        croppedName = "sample.wav"
-
-        if SongtotalTime > 1.5:
-            cropFile(songFile, str(count), "1.5", croppedName)
-        else:
-            if SongtotalTime > 0.5:
-                cropFile(songFile, str(count), str(SongtotalTime), croppedName)
-            else:
-                Tot_ChordPattern.append("-")
-                break
-        chordSeq = findAllChords(croppedName, mlModelName)
-
-        Tot_ChordPattern.append(max(set(chordSeq), key=chordSeq.count))
-        count += 0.5
-        SongtotalTime -= 0.5
-        os.remove("sample.wav")
-    return Tot_ChordPattern
-
 #Chord names with corresponding index values and 
 #Index values with corresponding Chord names are given in these 2 functions
 
